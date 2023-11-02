@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Controle Dinâmico</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Primeira Linha: Inputs -->
+    <div class="inputs">
+        <input type="number" id="resistencia" placeholder="Resistência (R)">
+        <input type="number" id="capacitancia" placeholder="Capacitância (C)">
+        <input type="number" id="condicaoInicial" placeholder="Condição Inicial (0-5V)">
+    </div>
+
+    <!-- Segunda Linha: Seleção de Imagens -->
+    <div class="image-select">
+        <button onclick="selectImage('1')">Imagem 1</button>
+        <button onclick="selectImage('2')">Imagem 2</button>
+        <button onclick="selectImage('3')">Imagem 3</button>
+        <button onclick="selectImage('4')">Imagem 4</button>
+        <button onclick="selectImage('5')">Imagem 5</button>
+        <button onclick="selectImage('6')">Imagem 6</button>
+    </div>
+
+    <!-- Terceira Linha: Simulação -->
+    <button onclick="simulate()">Simular</button>
+    <div class="results">
+        <div id="chart">Gráfico Aqui</div>
+        <div id="outputValue">Valor de Saída (V) Aqui</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
