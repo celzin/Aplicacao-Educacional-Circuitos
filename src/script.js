@@ -9,7 +9,7 @@ function simulate() {
     const resistenciaInput = document.getElementById('resistencia');
     const capacitanciaInput = document.getElementById('capacitancia');
     const condicaoInicialInput = document.getElementById('condicaoInicial');
-    
+
     const resistencia = parseInt(resistenciaInput.value, 10);
     const capacitancia = parseInt(capacitanciaInput.value, 10);
     const condicaoInicial = parseInt(condicaoInicialInput.value, 10);
@@ -22,7 +22,7 @@ function simulate() {
     let resultado = 0;
 
     // Aqui você pode adicionar a lógica para calcular os valores de acordo com a imagem selecionada
-    switch (parseInt(selectedImage)){
+    switch (parseInt(selectedImage)) {
         case 1:
             resultado = calc_c1(resistencia, capacitancia, condicaoInicial);
             break;
@@ -49,32 +49,32 @@ function simulate() {
     document.getElementById('outputValue').innerText = `Valor de Saída (V): ${resultado}V`;
 }
 
-function calc_c1(resistencia, capacitancia, condicaoInicial){
+function calc_c1(resistencia, capacitancia, condicaoInicial) {
     let somaTotal = resistencia + capacitancia + condicaoInicial;
     return somaTotal;
 }
 
-function calc_c2(resistencia, capacitancia, condicaoInicial){
+function calc_c2(resistencia, capacitancia, condicaoInicial) {
     let valorR = resistencia;
     return valorR;
 }
 
-function calc_c3(resistencia, capacitancia, condicaoInicial){
+function calc_c3(resistencia, capacitancia, condicaoInicial) {
     let valorC = capacitancia;
     return valorC;
 }
 
-function calc_c4(resistencia, capacitancia, condicaoInicial){
+function calc_c4(resistencia, capacitancia, condicaoInicial) {
     let valorCI = condicaoInicial;
     return valorCI;
 }
 
-function calc_c5(resistencia, capacitancia, condicaoInicial){
+function calc_c5(resistencia, capacitancia, condicaoInicial) {
     let somaRC = resistencia + capacitancia;
     return somaRC;
 }
 
-function calc_c6(resistencia, capacitancia, condicaoInicial){
+function calc_c6(resistencia, capacitancia, condicaoInicial) {
     let somaRCI = (resistencia + condicaoInicial);
     return somaRCI;
 }
