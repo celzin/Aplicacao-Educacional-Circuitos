@@ -539,21 +539,9 @@
             margin: 0 auto
         }
 
-        .content-item.inline-watermark-container {
-            text-align: center
-        }
-
-        .content-item.inline-watermark-container a {
-            text-decoration: underline
-        }
-
         .standalone-project-main.vcentered.center-center .modal-main,
         .standalone-project-main.vcentered.center-left .modal-main {
             border-radius: 8px
-        }
-
-        .content-item.inline-watermark-container a:hover {
-            text-decoration: none
         }
     </style>
     <style>
@@ -573,61 +561,6 @@
             font-family: BrandonGrotesqueWeb-Regular;
             src: url(/fonts/Brandon/38F14C_0_0.eot);
             src: url(/fonts/Brandon/38F14C_0_0.eot?#iefix) format("embedded-opentype"), url(/fonts/Brandon/38F14C_0_0.woff2) format("woff2"), url(/fonts/Brandon/38F14C_0_0.woff) format("woff"), url(/fonts/Brandon/38F14C_0_0.ttf) format("truetype")
-        }
-
-        .c-progressbar-container {
-            overflow: hidden;
-            padding-bottom: 30px;
-            position: fixed;
-            width: 100%;
-            z-index: 100
-        }
-
-        .c-progressbar-container:hover .progress-tooltip {
-            opacity: 1
-        }
-
-        .c-progressbar-container .progress-tooltip {
-            background-color: #101f23;
-            border-radius: 20px;
-            color: #fff;
-            line-height: 1.5;
-            opacity: 0;
-            padding: 5px 20px;
-            pointer-events: none;
-            position: absolute;
-            top: 9px;
-            transition: transform 1.6s ease
-        }
-
-        .c-progressbar-container .progress-tooltip-arrow {
-            border-bottom: 5px solid #101f23;
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
-            height: 0;
-            left: 50%;
-            position: absolute;
-            top: -5px;
-            transform: translate(-50%);
-            width: 0
-        }
-
-        .c-progressbar-container .progress {
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
-            display: flex;
-            font-size: .65625rem;
-            height: 4px !important;
-            overflow: hidden
-        }
-
-        .c-progressbar-container .progress-bar {
-            transition: width 1.6s ease;
-            width: 0;
-            will-change: width
-        }
-
-        .modal-container.mobile .c-progressbar-container {
-            width: 375px
         }
     </style>
     <style>
@@ -1609,12 +1542,6 @@
             }
         }
 
-        @media (max-width:479px) {
-            .view-participant:has(.preview-notice) .modal-main.project-timer {
-                padding-top: 90px
-            }
-        }
-
         .modal-container.mobile .content-item .wrapper {
             max-width: 100% !important
         }
@@ -1699,28 +1626,6 @@
         .c-page-navigation-container.appear {
             opacity: 1;
             visibility: visible
-        }
-
-        .c-page-navigation-container .watermark-container {
-            border-radius: 4px;
-            line-height: 0;
-            padding: 6px 15px
-        }
-
-        .c-page-navigation-container.showsnavigation .watermark-container {
-            border-bottom-right-radius: 0;
-            border-top-right-radius: 0
-        }
-
-        .c-page-navigation-container .watermark-container:hover {
-            background-color: #e3e8ea;
-            bottom: 0;
-            opacity: 1
-        }
-
-        .c-page-navigation-container .watermark-container img {
-            max-height: 100%;
-            width: 180px
         }
 
         .c-page-navigation-container button {
@@ -1818,9 +1723,6 @@
             display: inline
         }
 
-        .c-page-navigation-container.watermarkAlwaysMobile .watermark-container {
-            padding: 6px 15px
-        }
 
         .c-page-navigation-container.watermarkAlwaysMobile button {
             padding-left: 15px;
@@ -1855,19 +1757,10 @@
                 display: inline
             }
 
-            .c-page-navigation-container .watermark-container {
-                padding: 12px 15px
-            }
 
             .c-page-navigation-container button {
                 padding-left: 15px;
                 padding-right: 15px
-            }
-        }
-
-        @media screen and (max-width:349px) {
-            .c-page-navigation-container.showsprogress .watermark-container img {
-                width: 140px
             }
         }
 
@@ -1907,10 +1800,6 @@
 
         .modal-container.mobile .c-page-navigation-container .e-page-details .current-page {
             display: inline
-        }
-
-        .modal-container.mobile .c-page-navigation-container .watermark-container {
-            padding: 12px 15px
         }
 
         .modal-container.mobile .c-page-navigation-container button {
@@ -2629,16 +2518,6 @@
 
 
     <div lang="en" dir="auto" class="v-app-main bgfixed">
-        <div class="c-progressbar-container">
-            <div class="progress" style="height: 3px; background-color: rgba(21, 27, 30, 0.25);">
-                <div role="progressbar" class="progress-bar" style="width: 50%; background-color: rgb(21, 27, 30);">
-                </div>
-                <div class="progress-tooltip" style="transform: translateX(921.5px);">
-                    1 / 2
-                    <div class="progress-tooltip-arrow"></div>
-                </div>
-            </div>
-        </div> <!---->
         <div class="standalone-project-background-overlay" style="opacity: 0; background-color: black;"></div>
         <div class="standalone-project-main center-center"
             style="background-color: rgb(255, 255, 255); background-size: cover; background-image: url(&quot;https://involve-me.imgix.net/template-assets/content/759cf553-7fa3-4441-9341-389ccef9c194.png?q=55&amp;w=1920&amp;fit=max&quot;); background-position: center center; opacity: 1;">
@@ -2773,57 +2652,7 @@
                 </div> <!----> <!---->
             </div>
         </div> <!---->
-        <div class="c-page-navigation-container notranslate containswatermark showsprogress appear">
-            <div class="c-watermark"><a
-                    href="https://www.involve.me/interactive-calculator/?utm_source=involveme&amp;utm_medium=referral&amp;utm_campaign=watermark_project-corner&amp;utm_content=4o-semestre%2Fbox-volume-calculator-140d"
-                    target="_blank">
-                    <div class="watermark-container"><img
-                            src="https://assets.involve.me/assets/img/frontend/powered_by_involve_me.svg"
-                            alt="powered by involve.me"></div>
-                </a></div> <!----> <!----> <!---->
-        </div>
     </div>
-
-    <div class="preview-notice">
-        <a href="https://app.involve.me/projects/box-volume-calculator-140d/settings" title="Publish now">DRAFT
-            PREVIEW</a>
-    </div>
-    <style>
-        .preview-notice {
-            position: fixed;
-            line-height: 1;
-            border-radius: 4px;
-            background-color: rgba(255, 255, 255, 0.45);
-            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
-            left: 16px;
-            top: 16px;
-            color: #274553;
-            font-weight: bold;
-            text-align: center;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            padding: 5px 7px;
-            font-size: 30px;
-        }
-
-        .preview-notice a,
-        .preview-notice a:hover {
-            color: #274553;
-            text-decoration: none;
-        }
-
-        .preview-notice:hover {
-            background-color: #e3e8ea;
-        }
-
-        @media screen and (max-width: 479px) {
-            .preview-notice {
-                font-size: 24px;
-                width: calc(100% - 32px);
-            }
-        }
-    </style>
 
     <style>
         .c-checkbox-container .c-checkbox label input {
