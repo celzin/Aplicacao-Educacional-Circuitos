@@ -6,9 +6,18 @@ function selectImage(imageNumber) {
 }
 
 function simulate() {
-    const resistencia = parseInt(document.getElementById('resistencia').value, 10);
-    const capacitancia = parseInt(document.getElementById('capacitancia').value, 10);
-    const condicaoInicial = parseInt(document.getElementById('condicaoInicial').value, 10);
+    const resistenciaInput = document.getElementById('resistencia');
+    const capacitanciaInput = document.getElementById('capacitancia');
+    const condicaoInicialInput = document.getElementById('condicaoInicial');
+    
+    const resistencia = parseInt(resistenciaInput.value, 10);
+    const capacitancia = parseInt(capacitanciaInput.value, 10);
+    const condicaoInicial = parseInt(condicaoInicialInput.value, 10);
+
+    if (isNaN(resistencia) || isNaN(capacitancia) || isNaN(condicaoInicial)) {
+        alert('Por favor, insira valores numéricos válidos em todos os campos.');
+        return;
+    }
 
     let resultado = 0;
 
