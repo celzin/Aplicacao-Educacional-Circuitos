@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modelagem de Circuitos para Controle</title>
+  <link rel="stylesheet" href="styles.css" media="screen">
+</head>
+
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Modelagem de Circuitos para Controle</h1>
+    </header>
+
+    <div class="form-section">
+      <div class="form-group">
+        <label for="resistance">Resistência (Ω)</label>
+        <input type="text" id="resistance">
+      </div>
+      <div class="form-group">
+        <label for="capacitance">Capacitância (F)</label>
+        <input type="text" id="capacitance">
+      </div>
+      <div class="form-group">
+        <label for="initial-condition">Condição Inicial (V)</label>
+        <input type="text" id="initial-condition">
+      </div>
+      <button type="button">Calcular</button>
+    </div>
+
+    <div class="circuit-diagram">
+      <!-- Substitua 'circuit-diagram-placeholder.png' pelo caminho da imagem do diagrama do circuito -->
+      <img src="images/default.png" alt="Diagrama do Circuito">
+    </div>
+
+    <div class="graph-placeholder">
+      <!-- O gráfico será inserido aqui. O espaço está sendo ocupado por uma imagem de fundo por enquanto. -->
+    </div>
+
+    <!-- ... outras partes do HTML permanecem as mesmas ... -->
+
+    <div class="circuit-selection">
+      <!-- Linha 1 -->
+      <div class="circuit-option">
+        <input type="radio" id="circuit1" name="circuit" />
+        <label for="circuit1"><img src="images/default.png" alt="Circuito 1" /></label>
+      </div>
+      <div class="circuit-option">
+        <input type="radio" id="circuit2" name="circuit" />
+        <label for="circuit2"><img src="images/default.png" alt="Circuito 2" /></label>
+      </div>
+      <!-- Linha 2 -->
+      <div class="circuit-option">
+        <input type="radio" id="circuit3" name="circuit" />
+        <label for="circuit3"><img src="images/default.png" alt="Circuito 3" /></label>
+      </div>
+      <div class="circuit-option">
+        <input type="radio" id="circuit4" name="circuit" />
+        <label for="circuit4"><img src="images/default.png" alt="Circuito 4" /></label>
+      </div>
+      <!-- Linha 3 -->
+      <div class="circuit-option">
+        <input type="radio" id="circuit5" name="circuit" />
+        <label for="circuit5"><img src="images/default.png" alt="Circuito 5" /></label>
+      </div>
+      <div class="circuit-option">
+        <input type="radio" id="circuit6" name="circuit" />
+        <label for="circuit6"><img src="images/default.png" alt="Circuito 6" /></label>
+      </div>
+    </div>
+
+    <button type="button">Enviar</button>
+
+    <!-- ... -->
+
+  </div>
+
+</body>
+
+</html>
