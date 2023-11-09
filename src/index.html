@@ -1,102 +1,155 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+<div>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modelagem de Circuitos para Controle</title>
-  <link rel="stylesheet" href="styles.css" media="screen">
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelagem de Circuitos para Controle</title>
+    <link rel="stylesheet" href="styles.css" media="screen">
+  </head>
 
-<body>
-  <div class="container">
+  <body>
+    <div class="container">
 
-    <!-- <header>
+      <!-- <header>
       <h1>Modelagem de Circuitos para Controle</h1>
     </header> -->
 
-    <header>
-      <div class="overlay">
-        <h1 class="h1-header">Modelagem de Circuitos para Controle</h1>
-        <h3>Aprendendo com diagramas</h3>
-        <p></p>
-        <br>
-        <!-- <button>READ MORE</button> -->
-      </div>
-    </header><br><br>
+      <header>
+        <div class="overlay">
+          <h1 class="h1-header">Modelagem de Circuitos para Controle</h1>
+          <h3>Aprendendo com diagramas</h3>
+          <p></p>
+          <br>
+          <!-- <button>READ MORE</button> -->
+        </div>
+      </header><br><br>
 
-    <!-- <div class="circuit-diagram">
+      <!-- <div class="circuit-diagram">
       <img src="images/diagrama.png" alt="Diagrama do Circuito">
     </div> -->
 
 
-    <!-- INPUTS -->
-    <h2 class="h2-body">Informe os valores desejados</h2>
-    <div class="form-section">
-      <div class="form-group">
-        <input class="form-field" type="number" id="idresistencia" placeholder="Resistência" name="resistencia">
-        <span>(Ω)</span>
-      </div>
+      <!-- INPUTS -->
+      <h2 class="h2-body">Informe os valores desejados</h2>
+      <div class="form-section">
+        <div class="form-group">
+          <input class="form-field" type="number" id="idresistencia" placeholder="Resistência" name="resistencia">
+          <span>(Ω)</span>
+        </div>
 
-      <div class="form-group">
-        <input class="form-field" type="number" id="idcapacitancia" placeholder="Capacitância" name="capacitancia">
-        <span>(F)</span>
-      </div>
+        <div class="form-group">
+          <input class="form-field" type="number" id="idcapacitancia" placeholder="Capacitância" name="capacitancia">
+          <span>(F)</span>
+        </div>
 
-      <div class="form-group">
-        <input class="form-field" type="number" id="idcondicaoInicial" placeholder="Condição Inicial"
-          name="condicaoInicial">
-        <span>(V)</span>
-      </div>
-    </div><br><br>
-    <!-- ... -->
+        <div class="form-group">
+          <input class="form-field" type="number" id="idcondicaoInicial" placeholder="Condição Inicial"
+            name="condicaoInicial">
+          <span>(V)</span>
+        </div>
+      </div><br><br>
+      <!-- ... -->
 
-    <!-- CIRCUITOS -->
-    <h2 class="h2-body">Selecione o circuito desejado</h2>
-    <div class="circuit-selection">
-      <!-- Linha 1 -->
-      <div class="circuit-option">
-        <input type="radio" id="circuit1" name="circuit" />
-        <label class="label-select" for="circuit1"><img src="images/default.png" alt="Circuito 1" /></label>
-      </div>
-      <div class="circuit-option">
-        <input type="radio" id="circuit2" name="circuit" />
-        <label class="label-select" for="circuit2"><img src="images/default.png" alt="Circuito 2" /></label>
-      </div>
-      <!-- Linha 2 -->
-      <div class="circuit-option">
-        <input type="radio" id="circuit3" name="circuit" />
-        <label class="label-select" for="circuit3"><img src="images/default.png" alt="Circuito 3" /></label>
-      </div>
-      <div class="circuit-option">
-        <input type="radio" id="circuit4" name="circuit" />
-        <label class="label-select" for="circuit4"><img src="images/default.png" alt="Circuito 4" /></label>
-      </div>
-      <!-- Linha 3 -->
-      <div class="circuit-option">
-        <input type="radio" id="circuit5" name="circuit" />
-        <label class="label-select" for="circuit5"><img src="images/default.png" alt="Circuito 5" /></label>
-      </div>
-      <div class="circuit-option">
-        <input type="radio" id="circuit6" name="circuit" />
-        <label class="label-select" for="circuit6"><img src="images/default.png" alt="Circuito 6" /></label>
-      </div>
-    </div><br>
-    <!-- ... -->
+      <!-- CIRCUITOS -->
+      <h2 class="h2-body">Selecione o circuito desejado</h2>
+      <div class="circuit-selection">
+        <!-- Linha 1 -->
+        <div class="circuit-option">
+          <input type="radio" id="circuit1" name="circuit" />
+          <label class="label-select" for="circuit1"><img src="images/default.png" alt="Circuito 1" /></label>
+        </div>
+        <div class="circuit-option">
+          <input type="radio" id="circuit2" name="circuit" />
+          <label class="label-select" for="circuit2"><img src="images/default.png" alt="Circuito 2" /></label>
+        </div>
+        <!-- Linha 2 -->
+        <div class="circuit-option">
+          <input type="radio" id="circuit3" name="circuit" />
+          <label class="label-select" for="circuit3"><img src="images/default.png" alt="Circuito 3" /></label>
+        </div>
+        <div class="circuit-option">
+          <input type="radio" id="circuit4" name="circuit" />
+          <label class="label-select" for="circuit4"><img src="images/default.png" alt="Circuito 4" /></label>
+        </div>
+        <!-- Linha 3 -->
+        <div class="circuit-option">
+          <input type="radio" id="circuit5" name="circuit" />
+          <label class="label-select" for="circuit5"><img src="images/default.png" alt="Circuito 5" /></label>
+        </div>
+        <div class="circuit-option">
+          <input type="radio" id="circuit6" name="circuit" />
+          <label class="label-select" for="circuit6"><img src="images/default.png" alt="Circuito 6" /></label>
+        </div>
+      </div><br>
+      <!-- ... -->
 
-    <!-- Botão ação final -->
-    <!-- <button onclick="simulate()" type="button">Calcular</button> -->
-    <div align="center">
-      <a onclick="simulate()" href="#" class="button" id="button">Simular</a>
+      <!-- Botão ação final -->
+      <!-- <button onclick="simulate()" type="button">Calcular</button> -->
+      <div align="center">
+        <a onclick="simulate()" href="#" class="button" id="button">Simular</a>
+      </div>
+      <!-- ... -->
+
+      <div class="graph-placeholder">
+        <!-- O gráfico será inserido aqui. -->
+      </div>
     </div>
-    <!-- ... -->
 
-    <div class="graph-placeholder">
-      <!-- O gráfico será inserido aqui. -->
-    </div>
-  </div>
+  </body>
 
-</body>
+  <!--FONT AWESOME-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!--GOOGLE FONTS-->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Play&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <footer>
+      <div class="footer">
+        <div class="row">
+          <ul>
+            <h2>Contate-nos:</h2>
+          </ul>
+        </div>
+
+        <div class="row">
+          <!-- <a href="#"><i class="fa fa-facebook"></i></a> -->
+          <!-- <a href="#"><i class="fa fa-youtube"></i></a> -->
+          <!-- <a href="#"><i class="fa fa-twitter"></i></a> -->
+          <ul>
+            <a href="https://instagram.com/celsovinicius_sf"><i class="fa fa-instagram"> celsovinicius_sf</i></a>
+            <a href="https://instagram.com/phtop"><i class="fa fa-instagram"> phtop</i></a>
+          </ul>
+        </div>
+
+        <div class="row">
+          <ul>
+            <a href="https://github.com/celzin"><i class="fa fa-github"> celzin</i></a>
+            <a href="https://github.com/phpdias"><i class="fa fa-github"> phpdias</i></a>
+          </ul>
+        </div>
+
+        <!-- <div class="row">
+          <ul>
+            <li><a href="#">Contact us</a></li>
+            <li><a href="#">Our Services</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Career</a></li>
+          </ul>
+        </div> -->
+
+        <div class="row">
+          CEFERNO Copyright © 2023 Ceferno - Todos os direitos reservados || Designed By: Celsin e PH
+        </div>
+      </div>
+    </footer>
+
+</div>
 
 <script src="script.js"></script>
 
