@@ -15,6 +15,10 @@
       <h1>Modelagem de Circuitos para Controle</h1>
     </header>
 
+    <div class="circuit-diagram">
+      <img src="images/diagrama.png" alt="Diagrama do Circuito">
+    </div>
+
     <!-- INPUTS -->
     <div class="form-section">
       <div class="form-group">
@@ -32,54 +36,48 @@
     </div>
     <!-- ... -->
 
-
-    <div class="circuit-diagram">
-      <img src="images/default.png" alt="Diagrama do Circuito">
-    </div>
-
-    <div class="graph-placeholder">
-      <!-- O gráfico será inserido aqui. -->
-    </div>
-
-
     <!-- CIRCUITOS -->
     <div class="circuit-selection">
       <!-- Linha 1 -->
       <div class="circuit-option">
-        <input type="radio" id="circuit1" name="circuit" checked="checked" onclick="selectImage(1)"/>
-        <label for="circuit1"><img src="images/default.png" alt="Circuito 1"/></label>
+        <input type="radio" id="circuit1" name="circuit" />
+        <label class="label-select" for="circuit1"><img src="images/default.png" alt="Circuito 1" /></label>
       </div>
       <div class="circuit-option">
-        <input type="radio" id="circuit2" name="circuit" onclick="selectImage(2)"/>
-        <label for="circuit2"><img src="images/default.png" alt="Circuito 2" /></label>
+        <input type="radio" id="circuit2" name="circuit" />
+        <label class="label-select" for="circuit2"><img src="images/default.png" alt="Circuito 2" /></label>
       </div>
       <!-- Linha 2 -->
       <div class="circuit-option">
-        <input type="radio" id="circuit3" name="circuit" onclick="selectImage(3)"/>
-        <label for="circuit3"><img src="images/default.png" alt="Circuito 3" /></label>
+        <input type="radio" id="circuit3" name="circuit" />
+        <label class="label-select" for="circuit3"><img src="images/default.png" alt="Circuito 3" /></label>
       </div>
       <div class="circuit-option">
-        <input type="radio" id="circuit4" name="circuit" onclick="selectImage(4)"/>
-        <label for="circuit4"><img src="images/default.png" alt="Circuito 4" /></label>
+        <input type="radio" id="circuit4" name="circuit" />
+        <label class="label-select" for="circuit4"><img src="images/default.png" alt="Circuito 4" /></label>
       </div>
       <!-- Linha 3 -->
       <div class="circuit-option">
-        <input type="radio" id="circuit5" name="circuit" onclick="selectImage(5)"/>
-        <label for="circuit5"><img src="images/default.png" alt="Circuito 5" /></label>
+        <input type="radio" id="circuit5" name="circuit" />
+        <label class="label-select" for="circuit5"><img src="images/default.png" alt="Circuito 5" /></label>
       </div>
       <div class="circuit-option">
-        <input type="radio" id="circuit6" name="circuit" onclick="selectImage(6)"/>
-        <label for="circuit6"><img src="images/default.png" alt="Circuito 6" /></label>
+        <input type="radio" id="circuit6" name="circuit" />
+        <label class="label-select" for="circuit6"><img src="images/default.png" alt="Circuito 6" /></label>
       </div>
     </div>
     <!-- ... -->
 
-
     <!-- Botão ação final -->
     <!-- <button onclick="simulate()" type="button">Calcular</button> -->
-    <a onclick="simulate()" href="#" class="button" id="button">button</a>
+    <div align="center">
+      <a onclick="simulate()" href="#" class="button" id="button">Simular</a>
+    </div>
     <!-- ... -->
 
+    <div class="graph-placeholder">
+      <!-- O gráfico será inserido aqui. -->
+    </div>
   </div>
 
 </body>
