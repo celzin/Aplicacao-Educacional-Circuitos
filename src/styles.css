@@ -5,14 +5,14 @@ body {
     background-color: #f0f0f0;
 }
 
-.container {
+/* .container {
     width: 80%;
     margin: auto;
     padding: 20px;
     background-color: #ffffff;
     border: solid 1px #ddd;
     margin-top: 20px;
-}
+} */
 
 header {
     background-color: #4CAF50;
@@ -22,7 +22,9 @@ header {
 }
 
 .form-group {
-    margin-bottom: 10px;
+    flex: 1;
+    min-width: 0;
+    /* margin-bottom: 10px; */
 }
 
 label {
@@ -93,13 +95,13 @@ button {
 }
 
 body {
-    font-family: 'Rubik', sans-serif;
-    display: flex;
+    font-family: 'Mukta Malar', Arial, sans-serif;
     -ms-flex-align: center;
-    align-items: center;
+    background: #fff;
+    display: flex;
     justify-content: center;
+    align-items: center;
     min-height: 100vh;
-    background: #CCD1D9;
 }
 
 .button {
@@ -107,7 +109,7 @@ body {
     border-radius: 3px;
     box-shadow: 0px 0px 12px -2px rgba(0, 0, 0, 0.5);
     line-height: 1.25;
-    background: #4CAF50;
+    background: #678EFE;
     text-decoration: none;
     color: white;
     font-size: 16px;
@@ -187,7 +189,7 @@ input[type="radio"] {
     height: 100%;
     display: block;
     background: white;
-    border: 2px solid hsla(150, 75%, 50%, 1);
+    border: 1px solid #678EFE;
     border-radius: 20px;
     padding: 1rem;
     margin-bottom: 1rem;
@@ -198,9 +200,12 @@ input[type="radio"] {
 }
 
 input[type="radio"]:checked+label {
-    background: hsla(150, 75%, 50%, 1);
+    /* background: hsla(150, 75%, 50%, 1); */
+    background: #678EFE;
     color: hsla(215, 0%, 100%, 1);
-    box-shadow: 0px 0px 20px hsla(150, 100%, 50%, 0.75);
+    /* box-shadow: 0px 0px 20px hsla(150, 100%, 50%, 0.75); */
+    box-shadow: 0px 0px 20px #678EFE;
+
 
     /* &::after {
         color: hsla(215, 5%, 25%, 1);
@@ -238,12 +243,15 @@ p {
     }
 }
 
+/* Input SCSS */
+
 :root {
 
     --input-color: #99A3BA;
-    --input-border: #CDD9ED;
+    --input-border: #678EFE;
     --input-background: #fff;
-    --input-placeholder: #CBD1DC;
+    /* --input-placeholder: #CBD1DC; */
+    --input-placeholder: #555;
 
     --input-border-focus: #275EFE;
 
@@ -257,6 +265,14 @@ p {
 
 }
 
+.form-section {
+    display: flex;
+    gap: 16px;
+    /* Ajuste este valor conforme necessário para o espaçamento desejado */
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .form-field {
     display: block;
     width: 100%;
@@ -266,7 +282,6 @@ p {
     font-weight: 500;
     font-family: inherit;
     border-radius: 6px;
-    /* -webkit-appearance: none; */
     color: var(--input-color);
     border: 1px solid var(--input-border);
     background: var(--input-background);
@@ -323,7 +338,8 @@ p {
         padding: 8px 12px;
         font-size: 14px;
         line-height: 25px;
-        color: var(--group-color);
+        /* color: var(--group-color); */
+        color: var(--input-placeholder);
         background: var(--group-background);
         border: 1px solid var(--group-border);
         transition: background .3s ease, border .3s ease, color .3s ease;
@@ -352,7 +368,7 @@ html {
     }
 }
 
-body {
+.body-input {
     min-height: 100vh;
     font-family: 'Mukta Malar', Arial;
     display: flex;
@@ -362,7 +378,7 @@ body {
     background: #F5F9FF;
 
     .form-group {
-        max-width: 360px;
+        max-width: none;
 
         &:not(:last-child) {
             margin-bottom: 32px;
