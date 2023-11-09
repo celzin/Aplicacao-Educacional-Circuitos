@@ -44,7 +44,7 @@ function simulate() {
     }
 
     // document.getElementById('chart').innerText = `Gráfico do Circuito ${selectedImage}`;
-    // document.getElementById('outputValue').innerText = `Valor de Saída (V): ${resultado}V`;
+    document.getElementById('resultado').innerText = `Valor de Saída (V): ${resultado}V`;
 }
 
 function calc_c1(resistencia, capacitancia, condicaoInicial) {
