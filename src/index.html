@@ -18,18 +18,18 @@
     <!-- INPUTS -->
     <div class="form-section">
       <div class="form-group">
-        <label for="resistance">Resistência (Ω)</label>
-        <input type="text" id="resistance">
+        <label for="idresistencia">Resistência (Ω)</label>
+        <input type="number" id="idresistencia" placeholder="Resistência (Ω)" name="resistencia">
       </div>
       <div class="form-group">
-        <label for="capacitance">Capacitância (F)</label>
-        <input type="text" id="capacitance">
+        <label for="idcapacitancia">Capacitância (F)</label>
+        <input type="number" id="idcapacitancia" placeholder="Capacitância (F)" name="capacitancia">
       </div>
       <div class="form-group">
-        <label for="initial-condition">Condição Inicial (V)</label>
-        <input type="text" id="initial-condition">
+        <label for="idcondicaoInicial">Condição Inicial (V)</label>
+        <input type="number" id="idcondicaoInicial" placeholder="Condição Inicial (V)" name="condicaoInicial">
       </div>
-      <button type="button">Calcular</button>
+      <button onclick="simulate()" type="button">Calcular</button>
     </div>
     <!-- ... -->
 
@@ -84,4 +84,5 @@
 
 </body>
 
+<script src="script.js"></script>
 </html>
