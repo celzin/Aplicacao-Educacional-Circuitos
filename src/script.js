@@ -21,7 +21,7 @@ function simulate() {
 
     let resultado = 0;
 
-    switch (parseInt(selectedImage)){
+    switch (parseInt(selectedImage)) {
         case 1:
             resultado = calc_c1(resistencia, capacitancia, condicaoInicial);
             break;
@@ -47,32 +47,43 @@ function simulate() {
     // document.getElementById('outputValue').innerText = `Valor de Saída (V): ${resultado}V`;
 }
 
-function calc_c1(resistencia, capacitancia, condicaoInicial){
+function calc_c1(resistencia, capacitancia, condicaoInicial) {
     let somaTotal = resistencia + capacitancia + condicaoInicial;
     return somaTotal;
 }
 
-function calc_c2(resistencia, capacitancia, condicaoInicial){
+function calc_c2(resistencia, capacitancia, condicaoInicial) {
     let valorR = resistencia;
     return valorR;
 }
 
-function calc_c3(resistencia, capacitancia, condicaoInicial){
+function calc_c3(resistencia, capacitancia, condicaoInicial) {
     let valorC = capacitancia;
     return valorC;
 }
 
-function calc_c4(resistencia, capacitancia, condicaoInicial){
+function calc_c4(resistencia, capacitancia, condicaoInicial) {
     let valorCI = condicaoInicial;
     return valorCI;
 }
 
-function calc_c5(resistencia, capacitancia, condicaoInicial){
+function calc_c5(resistencia, capacitancia, condicaoInicial) {
     let somaRC = resistencia + capacitancia;
     return somaRC;
 }
 
-function calc_c6(resistencia, capacitancia, condicaoInicial){
+function calc_c6(resistencia, capacitancia, condicaoInicial) {
     let somaRCI = (resistencia + condicaoInicial);
     return somaRCI;
 }
+
+// Button script
+
+let button = document.getElementById("button");
+
+button.addEventListener('mousemove', (e) => {
+    x = e.offsetX;
+    y = e.offsetY;
+    button.style.setProperty('--mouse-x', x + "px");
+    button.style.setProperty('--mouse-y', y + "px");
+});
