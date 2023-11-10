@@ -66,23 +66,25 @@ button {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     /* Agora cria duas colunas */
-    grid-gap: 0px;
+    grid-gap: 50px;
     /* Espaçamento entre as opções de circuito */
     margin-bottom: 20px;
 }
 
 .circuit-option {
+    width: 500px;
+    height: 250px;
     text-align: center;
-    margin: auto;
+    margin: 0px;
     /* Centraliza o conteúdo de cada opção de circuito */
 }
 
 .circuit-option img {
-    width: 60%;
-    /* Define a largura da imagem para preencher a célula */
-    height: auto;
+    width: 80%;
+    height: 90%;
+    object-fit: fit;
     margin: 10px 0px 10px 0px;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 /* Button Style */
@@ -298,7 +300,7 @@ p {
 
 .form-field.invalid {
     border: 2px solid red;
-  }
+}
 
 .form-group {
     position: relative;
