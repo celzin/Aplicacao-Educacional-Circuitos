@@ -14,10 +14,10 @@ function simulate() {
     console.log(capacitancia);
     console.log(condicaoInicial);
 
-    if (isNaN(resistencia) || isNaN(capacitancia) || isNaN(condicaoInicial)) {
-        alert('Por favor, insira valores numéricos válidos em todos os campos.');
-        return;
-    }
+    // if (isNaN(resistencia) || isNaN(capacitancia) || isNaN(condicaoInicial)) {
+    //     alert('Por favor, insira valores numéricos válidos em todos os campos.');
+    //     return;
+    // }
 
     let resultado = 0;
 
@@ -87,3 +87,39 @@ button.addEventListener('mousemove', (e) => {
     button.style.setProperty('--mouse-x', x + "px");
     button.style.setProperty('--mouse-y', y + "px");
 });
+
+function validateAndSimulate() {
+    var resistenciaInput = document.getElementById("idresistencia");
+    var capacitanciaInput = document.getElementById("idcapacitancia");
+    var condicaoInicialInput = document.getElementById("idcondicaoInicial");
+
+    var isValid = true;
+
+    if(resistenciaInput.value === "" || resistenciaInput.value === null){
+        resistenciaInput.classList.add("invalid");
+        isValid = false;
+    }else{
+        resistenciaInput.classList.remove("invalid");
+    }
+
+    if(capacitanciaInput.value === "" || resistenciaInput.value === null){
+        capacitanciaInput.classList.add("invalid");
+        isValid = false;
+    }else{
+        capacitanciaInput.classList.remove("invalid");
+    }
+
+    if(condicaoInicialInput.value === "" || resistenciaInput.value === null){
+        condicaoInicialInput.classList.add("invalid");
+        isValid = false;
+    }else{
+        condicaoInicialInput.classList.remove("invalid");
+    }
+
+    if(isValid){
+        simulate();
+    }else{
+        alert("Preencha todos os campos!");
+        document.documentElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}

@@ -296,6 +296,10 @@ p {
     }
 }
 
+.form-field.invalid {
+    border: 2px solid red;
+  }
+
 .form-group {
     position: relative;
     display: flex;
