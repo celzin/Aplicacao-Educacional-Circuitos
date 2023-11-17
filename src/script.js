@@ -128,6 +128,24 @@
 
 // Testanfo os Gráficos
 
+// Adiciona um ouvinte de evento para o botão de simulação no HTML
+document.getElementById('simulateButton').addEventListener('click', function () {
+    const resistencia = parseFloat(document.getElementById('resistanceInput').value);
+    const capacitancia = parseFloat(document.getElementById('capacitanceInput').value);
+    const voltagem = parseFloat(document.getElementById('voltageInput').value);
+
+    // Chama a função para plota a Função Degrau
+    plotStepResponse(resistencia, capacitancia, voltagem, 'stepResponseCanvas');
+
+    // Chama a função para plotar o Diagrama de Bode
+    plotBodeDiagram(resistencia, capacitancia, 'bodeMagnitudeCanvas', 'bodePhaseCanvas');
+
+    // Chama a função para plotar o LGR
+    plotRootLocus(resistencia, capacitancia, 'rootLocusCanvas');
+});
+
+/* Calculando a Resposta Degrau*/
+
 function calculateTransferFunction(resistencia, capacitancia) {
     return {
         magnitude: function (omega) {
@@ -190,11 +208,154 @@ function plotStepResponse(resistencia, capacitancia, voltagem, canvasId) {
         }
     });
 }
+/* FIM da Func Degrau */
 
-// Adiciona um ouvinte de evento para o botão de simulação no HTML
-document.getElementById('simulateButton').addEventListener('click', function () {
-    const resistencia = parseFloat(document.getElementById('resistanceInput').value);
-    const capacitancia = parseFloat(document.getElementById('capacitanceInput').value);
-    const voltagem = parseFloat(document.getElementById('voltageInput').value);
-    plotStepResponse(resistencia, capacitancia, voltagem, 'stepResponseCanvas');
-});
+/* Diagrama de Bode */
+
+function calculateBodeData(resistencia, capacitancia) {
+    const freqData = [];
+    const magData = [];
+    const phaseData = [];
+
+    for (let i = 0; i <= 100; i++) {
+        // Calcula a frequência em escala logarítmica
+        const freq = Math.pow(10, i / 20); // varia de 1 a 10^5
+        const omega = 2 * Math.PI * freq;
+        const rc = resistencia * capacitancia;
+
+        // Calcula a magnitude e a fase
+        const mag = 20 * Math.log10(1 / Math.sqrt(1 + Math.pow(omega * rc, 2)));
+        const phase = -Math.atan(omega * rc) * (180 / Math.PI);
+
+        freqData.push(freq);
+        magData.push(mag);
+        phaseData.push(phase);
+    }
+
+    return { freqData, magData, phaseData };
+}
+
+function plotBodeDiagram(resistencia, capacitancia, canvasIdMag, canvasIdPhase) {
+    const { freqData, magData, phaseData } = calculateBodeData(resistencia, capacitancia);
+
+    const canvasMag = document.getElementById(canvasIdMag);
+    const ctxMag = canvasMag.getContext('2d');
+    const canvasPhase = document.getElementById(canvasIdPhase);
+    const ctxPhase = canvasPhase.getContext('2d');
+
+    // Plota a magnitude
+    new Chart(ctxMag, {
+        type: 'line',
+        data: {
+            labels: freqData,
+            datasets: [{
+                label: 'Magnitude (dB)',
+                data: magData,
+                fill: false,
+                borderColor: 'red',
+                backgroundColor: 'red',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    type: 'logarithmic',
+                    title: {
+                        display: true,
+                        text: 'Frequency (Hz)'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Magnitude (dB)'
+                    }
+                }
+            }
+        }
+    });
+
+    // Plota a fase
+    new Chart(ctxPhase, {
+        type: 'line',
+        data: {
+            labels: freqData,
+            datasets: [{
+                label: 'Phase (degrees)',
+                data: phaseData,
+                fill: false,
+                borderColor: 'blue',
+                backgroundColor: 'blue',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    type: 'logarithmic',
+                    title: {
+                        display: true,
+                        text: 'Frequency (Hz)'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Phase (degrees)'
+                    }
+                }
+            }
+        }
+    });
+}
+
+/* FIM De Bode */
+
+/* Lugar Geometrico das Raízes */
+
+function plotRootLocus(resistencia, capacitancia, canvasId) {
+    const canvas = document.getElementById(canvasId);
+    const ctx = canvas.getContext('2d');
+
+    // Para um circuito RC, há apenas um polo, então o LGR é apenas um ponto.
+    const pole = -1 / (resistencia * capacitancia);
+
+    // Cria o gráfico do LGR
+    new Chart(ctx, {
+        type: 'scatter',
+        data: {
+            datasets: [{
+                label: 'Polo',
+                data: [{ x: pole, y: 0 }],
+                backgroundColor: 'red'
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Real'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Imaginary'
+                    },
+                    beginAtZero: true,
+                    min: -1,
+                    max: 1
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+}
+
+/* FIM LGR */
