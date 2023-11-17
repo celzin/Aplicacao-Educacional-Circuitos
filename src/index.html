@@ -6,9 +6,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modelagem de Circuitos para Controle</title>
-    <link rel="stylesheet" href="styles.css" media="screen">
-    <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css" media="screen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Play&display=swap" rel="stylesheet">
   </head>
 
   <body>
@@ -27,17 +29,17 @@
       <h2 class="h2-body">Informe os valores desejados</h2>
       <div class="form-section">
         <div class="form-group">
-          <input class="form-field" type="number" id="idresistencia" placeholder="Resistência" name="resistencia">
+          <input class="form-field" type="number" id="resistanceInput" placeholder="Resistência" name="resistencia">
           <span>(Ω)</span>
         </div>
 
         <div class="form-group">
-          <input class="form-field" type="number" id="idcapacitancia" placeholder="Capacitância" name="capacitancia">
+          <input class="form-field" type="number" id="capacitanceInput" placeholder="Capacitância" name="capacitancia">
           <span>(F)</span>
         </div>
 
         <div class="form-group">
-          <input class="form-field" type="number" id="idcondicaoInicial" placeholder="Condição Inicial"
+          <input class="form-field" type="number" id="voltageInput" placeholder="Condição Inicial"
             name="condicaoInicial">
           <span>(V)</span>
         </div>
@@ -85,7 +87,7 @@
 
       <!-- Botão ação final -->
       <div align="center">
-        <a onclick="validateAndSimulate()" class="button-confirm" id="">Simular</a>
+        <a onclick="validateAndSimulate()" class="button-confirm" id="simulateButton">Simular</a>
       </div>
       <!-- ... -->
 
@@ -95,92 +97,44 @@
       </div>
 
       <!-- GRÁFICOS -->
-      <h2>Resposta ao Degrau</h2>
-      <canvas id="stepResponseChart"></canvas>
-
-      <h2>Diagrama de Bode</h2>
-      <h3>Magnitude</h3>
-      <canvas id="bodeMagnitudeChart"></canvas>
-      <h3>Fase</h3>
-      <canvas id="bodePhaseChart"></canvas>
-
-      <h2>Lugar Geométrico das Raízes (LGR)</h2>
-      <canvas id="rootLocusChart"></canvas>
-
-      <script>
-        // Você pode chamar as funções de plotagem aqui ou dentro do arquivo script.js
-        // após a análise ser realizada. Por exemplo:
-        function performAnalysis() {
-          // Obter valores do formulário
-          const R = parseFloat(document.getElementById('resistor').value);
-          const C = parseFloat(document.getElementById('capacitor').value);
-          const Vin = parseFloat(document.getElementById('voltage').value);
-
-          // Supondo que você tenha as funções generate* e plot* definidas em script.js
-          const stepData = generateStepResponseData(R, C, Vin);
-          const bodeData = generateBodeData(R, C);
-          const pole = generateRootLocusData(R, C);
-
-          plotStepResponse(stepData);
-          plotBode(bodeData);
-          plotRootLocus(pole);
-        }
-      </script>
+      <canvas id="stepResponseCanvas" max-width="250px" max-height="250px"></canvas>
       <!-- ... -->
 
     </div>
 
   </body>
 
-  <!--FONT AWESOME-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <!--GOOGLE FONTS-->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Play&display=swap" rel="stylesheet">
-  </head>
+  <footer>
 
-  <body>
-    <footer>
-      <div class="footer">
-        <div class="row">
-          <ul>
-            <h2>Contate-nos:</h2>
-          </ul>
-        </div>
-
-        <div class="row">
-          <!-- <a href="#"><i class="fa fa-facebook"></i></a> -->
-          <!-- <a href="#"><i class="fa fa-youtube"></i></a> -->
-          <!-- <a href="#"><i class="fa fa-twitter"></i></a> -->
-          <ul>
-            <a href="https://instagram.com/celsovinicius_sf"><i class="fa fa-instagram"> celsovinicius_sf</i></a>
-            <a href="https://instagram.com/phtop"><i class="fa fa-instagram"> phtop</i></a>
-          </ul>
-        </div>
-
-        <div class="row">
-          <ul>
-            <a href="https://github.com/celzin"><i class="fa fa-github"> celzin</i></a>
-            <a href="https://github.com/phpdias"><i class="fa fa-github"> phpdias</i></a>
-          </ul>
-        </div>
-
-        <!-- <div class="row">
-          <ul>
-            <li><a href="#">Contact us</a></li>
-            <li><a href="#">Our Services</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms & Conditions</a></li>
-            <li><a href="#">Career</a></li>
-          </ul>
-        </div> -->
-
-        <div class="row">
-          CEFERNO Copyright © 2023 Ceferno - Todos os direitos reservados || Designed By: Celsin e PH
-        </div>
+    <div class="footer">
+      <div class="row">
+        <ul>
+          <h2>Contate-nos:</h2>
+        </ul>
       </div>
-    </footer>
+
+      <div class="row">
+        <ul>
+          <a href="https://instagram.com/celsovinicius_sf"><i class="fa fa-instagram"> celsovinicius_sf</i></a>
+          <a href="https://instagram.com/phtop"><i class="fa fa-instagram"> phtop</i></a>
+        </ul>
+      </div>
+
+      <div class="row">
+        <ul>
+          <a href="https://github.com/celzin"><i class="fa fa-github"> celzin</i></a>
+          <a href="https://github.com/phpdias"><i class="fa fa-github"> phpdias</i></a>
+        </ul>
+      </div>
+
+      <div class="row">
+        CEFERNO Copyright © 2023 Ceferno - Todos os direitos reservados || Designed By: Celsin e PH
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 
 </div>
 
