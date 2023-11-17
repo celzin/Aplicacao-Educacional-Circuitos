@@ -7,14 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modelagem de Circuitos para Controle</title>
     <link rel="stylesheet" href="styles.css" media="screen">
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
 
   <body>
     <div class="container">
-
-      <!-- <header>
-      <h1>Modelagem de Circuitos para Controle</h1>
-    </header> -->
 
       <header>
         <div class="overlay">
@@ -22,14 +20,8 @@
           <h3>Aprendendo com diagramas</h3>
           <p></p>
           <br>
-          <!-- <button>READ MORE</button> -->
         </div>
       </header><br><br>
-
-      <!-- <div class="circuit-diagram">
-      <img src="images/diagrama.png" alt="Diagrama do Circuito">
-    </div> -->
-
 
       <!-- INPUTS -->
       <h2 class="h2-body">Informe os valores desejados</h2>
@@ -101,6 +93,41 @@
         <!-- O gráfico será inserido aqui. -->
         <h1 id="resultado"></h1>
       </div>
+
+      <!-- GRÁFICOS -->
+      <h2>Resposta ao Degrau</h2>
+      <canvas id="stepResponseChart"></canvas>
+
+      <h2>Diagrama de Bode</h2>
+      <h3>Magnitude</h3>
+      <canvas id="bodeMagnitudeChart"></canvas>
+      <h3>Fase</h3>
+      <canvas id="bodePhaseChart"></canvas>
+
+      <h2>Lugar Geométrico das Raízes (LGR)</h2>
+      <canvas id="rootLocusChart"></canvas>
+
+      <script>
+        // Você pode chamar as funções de plotagem aqui ou dentro do arquivo script.js
+        // após a análise ser realizada. Por exemplo:
+        function performAnalysis() {
+          // Obter valores do formulário
+          const R = parseFloat(document.getElementById('resistor').value);
+          const C = parseFloat(document.getElementById('capacitor').value);
+          const Vin = parseFloat(document.getElementById('voltage').value);
+
+          // Supondo que você tenha as funções generate* e plot* definidas em script.js
+          const stepData = generateStepResponseData(R, C, Vin);
+          const bodeData = generateBodeData(R, C);
+          const pole = generateRootLocusData(R, C);
+
+          plotStepResponse(stepData);
+          plotBode(bodeData);
+          plotRootLocus(pole);
+        }
+      </script>
+      <!-- ... -->
+
     </div>
 
   </body>
@@ -156,7 +183,5 @@
     </footer>
 
 </div>
-
-<script src="script.js"></script>
 
 </html>
