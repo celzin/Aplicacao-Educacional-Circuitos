@@ -88,48 +88,49 @@ function selectImage(imageNumber) {
 //     button.style.setProperty('--mouse-y', y + "px");
 // });
 
-// function validateAndSimulate() {
-//     var resistenciaInput = document.getElementById("idresistencia");
-//     var capacitanciaInput = document.getElementById("idcapacitancia");
-//     var condicaoInicialInput = document.getElementById("idcondicaoInicial");
+function validateAndSimulate() {
+    var resistenciaInput = document.getElementById("resistanceInput");
+    var capacitanciaInput = document.getElementById("capacitanceInput");
+    var condicaoInicialInput = document.getElementById("voltageInput");
 
-//     var isValid = true;
+    var isValid = true;
 
-//     if (resistenciaInput.value === "" || resistenciaInput.value === null) {
-//         resistenciaInput.classList.add("invalid");
-//         isValid = false;
-//     } else {
-//         resistenciaInput.classList.remove("invalid");
-//     }
+    if (resistenciaInput.value === "" || resistenciaInput.value === null) {
+        resistenciaInput.classList.add("invalid");
+        isValid = false;
+    } else {
+        resistenciaInput.classList.remove("invalid");
+    }
 
-//     if (capacitanciaInput.value === "" || resistenciaInput.value === null) {
-//         capacitanciaInput.classList.add("invalid");
-//         isValid = false;
-//     } else {
-//         capacitanciaInput.classList.remove("invalid");
-//     }
+    if (capacitanciaInput.value === "" || resistenciaInput.value === null) {
+        capacitanciaInput.classList.add("invalid");
+        isValid = false;
+    } else {
+        capacitanciaInput.classList.remove("invalid");
+    }
 
-//     if (condicaoInicialInput.value === "" || resistenciaInput.value === null) {
-//         condicaoInicialInput.classList.add("invalid");
-//         isValid = false;
-//     } else {
-//         condicaoInicialInput.classList.remove("invalid");
-//     }
+    if (condicaoInicialInput.value === "" || resistenciaInput.value === null) {
+        condicaoInicialInput.classList.add("invalid");
+        isValid = false;
+    } else {
+        condicaoInicialInput.classList.remove("invalid");
+    }
 
-//     if (isValid) {
-//         simulate();
-//     } else {
-//         alert("Preencha todos os campos!");
-//         document.documentElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-//     }
-// }
+    if (isValid) {
+        simulate();
+    } else {
+        alert("Preencha todos os campos!");
+        document.documentElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
 
 
 
 // Testanfo os Gráficos
 
 // Adiciona um ouvinte de evento para o botão de simulação no HTML
-document.getElementById('simulateButton').addEventListener('click', function () {
+function simulate() {
+    // document.getElementById('simulateButton').addEventListener('click', function () {s
     const resistencia = parseFloat(document.getElementById('resistanceInput').value);
     const capacitancia = parseFloat(document.getElementById('capacitanceInput').value);
     const voltagem = parseFloat(document.getElementById('voltageInput').value);
@@ -154,7 +155,7 @@ document.getElementById('simulateButton').addEventListener('click', function () 
     }
 
 
-});
+};
 
 /* Calculando a Resposta Degrau*/
 
