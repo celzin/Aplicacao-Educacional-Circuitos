@@ -1,9 +1,9 @@
-// let selectedImage = 1;
+let selectedImage = 1;
 
-// function selectImage(imageNumber) {
-//     selectedImage = imageNumber;
-//     console.log(imageNumber);
-// }
+function selectImage(imageNumber) {
+    selectedImage = imageNumber;
+    console.log(imageNumber);
+}
 
 // function simulate() {
 //     const resistencia = parseInt(document.getElementById('idresistencia').value, 10);
@@ -134,14 +134,26 @@ document.getElementById('simulateButton').addEventListener('click', function () 
     const capacitancia = parseFloat(document.getElementById('capacitanceInput').value);
     const voltagem = parseFloat(document.getElementById('voltageInput').value);
 
-    // Chama a função para plota a Função Degrau
-    plotStepResponse(resistencia, capacitancia, voltagem, 'stepResponseCanvas');
+    switch (parseInt(selectedImage)) {
+        case 1:
+            plotStepResponse(resistencia, capacitancia, voltagem, 'stepResponseCanvas');
+            plotBodeDiagram(resistencia, capacitancia, 'bodeMagnitudeCanvas', 'bodePhaseCanvas');
+            plotRootLocus(resistencia, capacitancia, 'rootLocusCanvas');
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        case 6:
+            break;
+        default:
+    }
 
-    // Chama a função para plotar o Diagrama de Bode
-    plotBodeDiagram(resistencia, capacitancia, 'bodeMagnitudeCanvas', 'bodePhaseCanvas');
 
-    // Chama a função para plotar o LGR
-    plotRootLocus(resistencia, capacitancia, 'rootLocusCanvas');
 });
 
 /* Calculando a Resposta Degrau*/
