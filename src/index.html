@@ -1,150 +1,206 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<div>
+  <div>
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Modelagem de Circuitos para Controle</title>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <link rel="stylesheet" href="styles.css" media="screen" />
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      />
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Play&display=swap"
+        rel="stylesheet"
+      />
+    </head>
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modelagem de Circuitos para Controle</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="styles.css" media="screen">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Play&display=swap" rel="stylesheet">
-  </head>
+    <body>
+      <div class="container">
+        <header>
+          <div class="overlay">
+            <h1 class="h1-header">Modelagem de Circuitos para Controle</h1>
+            <h3>Aprendendo com diagramas</h3>
+            <p></p>
+            <br />
+          </div>
+        </header>
+        <br /><br />
 
-  <body>
-    <div class="container">
+        <!-- INPUTS -->
+        <h2 class="h2-body">Informe os valores desejados</h2>
+        <div class="form-section">
+          <div class="form-group">
+            <input
+              class="form-field"
+              type="number"
+              id="resistanceInput"
+              placeholder="Resistência"
+              name="resistencia"
+            />
+            <span>(Ω)</span>
+          </div>
 
-      <header>
-        <div class="overlay">
-          <h1 class="h1-header">Modelagem de Circuitos para Controle</h1>
-          <h3>Aprendendo com diagramas</h3>
-          <p></p>
-          <br>
-        </div>
-      </header><br><br>
+          <div class="form-group">
+            <input
+              class="form-field"
+              type="number"
+              id="capacitanceInput"
+              placeholder="Capacitância"
+              name="capacitancia"
+            />
+            <span>(F)</span>
+          </div>
 
-      <!-- INPUTS -->
-      <h2 class="h2-body">Informe os valores desejados</h2>
-      <div class="form-section">
-        <div class="form-group">
-          <input class="form-field" type="number" id="resistanceInput" placeholder="Resistência" name="resistencia">
-          <span>(Ω)</span>
+          <div class="form-group">
+            <input
+              class="form-field"
+              type="number"
+              id="voltageInput"
+              placeholder="Condição Inicial"
+              name="condicaoInicial"
+            />
+            <span>(V)</span>
+          </div>
+        </div>
+        <br /><br />
+        <!-- ... -->
+
+        <!-- CIRCUITOS -->
+        <h2 class="h2-body">Selecione o circuito desejado</h2>
+        <div class="circuit-selection">
+          <!-- Linha 1 -->
+          <div class="circuit-option" onclick="selectImage(1)">
+            <input
+              type="radio"
+              id="circuit1"
+              name="circuit"
+              checked="checked"
+            />
+            <label class="label-select" for="circuit1"
+              ><img src="../images/circuito-1.png" alt="Circuito 1"
+            /></label>
+            <span>Circuito 1 - RC em Série</span>
+          </div>
+          <div class="circuit-option" onclick="selectImage(2)">
+            <input type="radio" id="circuit2" name="circuit" />
+            <label class="label-select" for="circuit2"
+              ><img src="../images/circuito-2.png" alt="Circuito 2"
+            /></label>
+            <span>Circuito 2 - CR em Série</span>
+          </div>
+          <!-- Linha 2 -->
+          <div class="circuit-option" onclick="selectImage(3)">
+            <input type="radio" id="circuit3" name="circuit" />
+            <label class="label-select" for="circuit3"
+              ><img src="../images/circuito-3.png" alt="Circuito 3"
+            /></label>
+            <span>Circuito 3 - RC em Paralelo</span>
+          </div>
+          <div class="circuit-option" onclick="selectImage(4)">
+            <input type="radio" id="circuit4" name="circuit" />
+            <label class="label-select" for="circuit4"
+              ><img src="../images/circuito-4.png" alt="Circuito 4"
+            /></label>
+            <span>Circuito 4 - CR em Paralelo</span>
+          </div>
+          <!-- Linha 3 -->
+          <div class="circuit-option" onclick="selectImage(5)">
+            <input type="radio" id="circuit5" name="circuit" />
+            <label class="label-select" for="circuit5"
+              ><img src="../images/circuito-5.png" alt="Circuito 5"
+            /></label>
+            <span>Circuito 5 - RCC</span>
+          </div>
+          <div class="circuit-option" onclick="selectImage(6)">
+            <input type="radio" id="circuit6" name="circuit" />
+            <label class="label-select" for="circuit6"
+              ><img src="../images/circuito-6.png" alt="Circuito 6"
+            /></label>
+            <span>Circuito 6 - </span>
+          </div>
+        </div>
+        <!-- ... -->
+
+        <!-- Botão ação final -->
+        <div align="center">
+          <a
+            onclick="validateAndSimulate()"
+            class="button-confirm"
+            id="simulateButton"
+            >Simular</a
+          >
+        </div>
+        <!-- ... -->
+
+        <div class="graph-placeholder">
+          <!-- O gráfico será inserido aqui. -->
+          <h1 id="resultado"></h1>
         </div>
 
-        <div class="form-group">
-          <input class="form-field" type="number" id="capacitanceInput" placeholder="Capacitância" name="capacitancia">
-          <span>(F)</span>
+        <!-- GRÁFICOS -->
+        <h2>Resposta ao Degrau</h2>
+        <canvas
+          id="stepResponseCanvas"
+          max-width="250"
+          max-height="250"
+        ></canvas>
+
+        <h2>Diagrama de Bode</h2>
+        <canvas
+          id="bodeMagnitudeCanvas"
+          max-width="250"
+          max-height="250"
+        ></canvas>
+        <canvas id="bodePhaseCanvas" max-width="250" max-height="250"></canvas>
+
+        <h2>LGR</h2>
+        <canvas id="rootLocusCanvas" max-width="250" max-height="250"></canvas>
+
+        <!-- ... -->
+      </div>
+    </body>
+
+    <footer>
+      <div class="footer">
+        <div class="row">
+          <ul>
+            <h2>Contate-nos:</h2>
+          </ul>
         </div>
 
-        <div class="form-group">
-          <input class="form-field" type="number" id="voltageInput" placeholder="Condição Inicial"
-            name="condicaoInicial">
-          <span>(V)</span>
+        <div class="row">
+          <ul>
+            <a href="https://instagram.com/celsovinicius_sf"
+              ><i class="fa fa-instagram"> celsovinicius_sf</i></a
+            >
+            <a href="https://instagram.com/phtop"
+              ><i class="fa fa-instagram"> phtop</i></a
+            >
+          </ul>
         </div>
-      </div><br><br>
-      <!-- ... -->
 
-      <!-- CIRCUITOS -->
-      <h2 class="h2-body">Selecione o circuito desejado</h2>
-      <div class="circuit-selection">
-        <!-- Linha 1 -->
-        <div class="circuit-option" onclick="selectImage(1)">
-          <input type="radio" id="circuit1" name="circuit" checked="checked" />
-          <label class="label-select" for="circuit1"><img src="images/circuito-1.png" alt="Circuito 1" /></label>
-          <span>Circuito 1 - RC em Série</span>
+        <div class="row">
+          <ul>
+            <a href="https://github.com/celzin"
+              ><i class="fa fa-github"> celzin</i></a
+            >
+            <a href="https://github.com/phpdias"
+              ><i class="fa fa-github"> phpdias</i></a
+            >
+          </ul>
         </div>
-        <div class="circuit-option" onclick="selectImage(2)">
-          <input type="radio" id="circuit2" name="circuit" />
-          <label class="label-select" for="circuit2"><img src="images/circuito-2.png" alt="Circuito 2" /></label>
-          <span>Circuito 2 - CR em Série</span>
-        </div>
-        <!-- Linha 2 -->
-        <div class="circuit-option" onclick="selectImage(3)">
-          <input type="radio" id="circuit3" name="circuit" />
-          <label class="label-select" for="circuit3"><img src="images/circuito-3.png" alt="Circuito 3" /></label>
-          <span>Circuito 3 - RC em Paralelo</span>
-        </div>
-        <div class="circuit-option" onclick="selectImage(4)">
-          <input type="radio" id="circuit4" name="circuit" />
-          <label class="label-select" for="circuit4"><img src="images/circuito-4.png" alt="Circuito 4" /></label>
-          <span>Circuito 4 - CR em Paralelo</span>
-        </div>
-        <!-- Linha 3 -->
-        <div class="circuit-option" onclick="selectImage(5)">
-          <input type="radio" id="circuit5" name="circuit" />
-          <label class="label-select" for="circuit5"><img src="images/circuito-5.png" alt="Circuito 5" /></label>
-          <span>Circuito 5 - RCC</span>
-        </div>
-        <div class="circuit-option" onclick="selectImage(6)">
-          <input type="radio" id="circuit6" name="circuit" />
-          <label class="label-select" for="circuit6"><img src="images/circuito-6.png" alt="Circuito 6" /></label>
-          <span>Circuito 6 - </span>
+
+        <div class="row">
+          CEFERNO Copyright © 2023 Ceferno - Todos os direitos reservados ||
+          Designed By: Celsin e PH
         </div>
       </div>
-      <!-- ... -->
+    </footer>
 
-      <!-- Botão ação final -->
-      <div align="center">
-        <a onclick="validateAndSimulate()" class="button-confirm" id="simulateButton">Simular</a>
-      </div>
-      <!-- ... -->
-
-      <div class="graph-placeholder">
-        <!-- O gráfico será inserido aqui. -->
-        <h1 id="resultado"></h1>
-      </div>
-
-      <!-- GRÁFICOS -->
-      <h2>Resposta ao Degrau</h2>
-      <canvas id="stepResponseCanvas" max-width="250" max-height="250"></canvas>
-
-      <h2>Diagrama de Bode</h2>
-      <canvas id="bodeMagnitudeCanvas" max-width="250" max-height="250"></canvas>
-      <canvas id="bodePhaseCanvas" max-width="250" max-height="250"></canvas>
-
-      <h2>LGR</h2>
-      <canvas id="rootLocusCanvas" max-width="250" max-height="250"></canvas>
-
-      <!-- ... -->
-
-    </div>
-
-  </body>
-
-
-  <footer>
-
-    <div class="footer">
-      <div class="row">
-        <ul>
-          <h2>Contate-nos:</h2>
-        </ul>
-      </div>
-
-      <div class="row">
-        <ul>
-          <a href="https://instagram.com/celsovinicius_sf"><i class="fa fa-instagram"> celsovinicius_sf</i></a>
-          <a href="https://instagram.com/phtop"><i class="fa fa-instagram"> phtop</i></a>
-        </ul>
-      </div>
-
-      <div class="row">
-        <ul>
-          <a href="https://github.com/celzin"><i class="fa fa-github"> celzin</i></a>
-          <a href="https://github.com/phpdias"><i class="fa fa-github"> phpdias</i></a>
-        </ul>
-      </div>
-
-      <div class="row">
-        CEFERNO Copyright © 2023 Ceferno - Todos os direitos reservados || Designed By: Celsin e PH
-      </div>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
-
-</div>
-
+    <script src="script.js"></script>
+  </div>
 </html>
