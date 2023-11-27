@@ -37,22 +37,39 @@ function validateAndSimulate() {
         simulate();
     } else {
         alert("Preencha todos os campos!");
-        document.documentElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.documentElement.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+        });
     }
 }
 
 // Testanfo os Gráficos
 
 function simulate() {
-    const resistencia = parseFloat(document.getElementById('resistanceInput').value);
-    const capacitancia = parseFloat(document.getElementById('capacitanceInput').value);
-    const voltagem = parseFloat(document.getElementById('voltageInput').value);
+    const resistencia = parseFloat(
+        document.getElementById("resistanceInput").value
+    );
+    const capacitancia = parseFloat(
+        document.getElementById("capacitanceInput").value
+    );
+    const voltagem = parseFloat(document.getElementById("voltageInput").value);
 
     switch (parseInt(selectedImage)) {
         case 1:
-            plotStepResponse(resistencia, capacitancia, voltagem, 'stepResponseCanvas');
-            plotBodeDiagram(resistencia, capacitancia, 'bodeMagnitudeCanvas', 'bodePhaseCanvas');
-            plotRootLocus(resistencia, capacitancia, 'rootLocusCanvas');
+            plotStepResponse(
+                resistencia,
+                capacitancia,
+                voltagem,
+                "stepResponseCanvas"
+            );
+            plotBodeDiagram(
+                resistencia,
+                capacitancia,
+                "bodeMagnitudeCanvas",
+                "bodePhaseCanvas"
+            );
+            plotRootLocus(resistencia, capacitancia, "rootLocusCanvas");
             break;
         case 2:
             break;
@@ -66,28 +83,28 @@ function simulate() {
             break;
         default:
     }
-
-
-};
+}
 
 /* Calculando a Resposta Degrau*/
 
 function calculateTransferFunction(resistencia, capacitancia) {
     return {
         magnitude: function (omega) {
-            let denom = Math.sqrt(1 + Math.pow(omega * resistencia * capacitancia, 2));
+            let denom = Math.sqrt(
+                1 + Math.pow(omega * resistencia * capacitancia, 2)
+            );
             return 1 / denom;
         },
         phase: function (omega) {
             return -Math.atan(omega * resistencia * capacitancia);
-        }
+        },
     };
 }
 
 // Esta função calcula a resposta ao degrau de um circuito RC
 function plotStepResponse(resistencia, capacitancia, voltagem, canvasId) {
     const canvas = document.getElementById(canvasId);
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
 
     // Define o tempo máximo e o intervalo de tempo para a simulação
     const tau = resistencia * capacitancia;
@@ -105,33 +122,35 @@ function plotStepResponse(resistencia, capacitancia, voltagem, canvasId) {
 
     // Cria o gráfico de resposta ao degrau
     new Chart(ctx, {
-        type: 'line',
+        type: "line",
         data: {
             labels: timeData,
-            datasets: [{
-                label: 'Step Response',
-                data: voltageData,
-                fill: false,
-                borderColor: 'blue',
-                tension: 0.1
-            }]
+            datasets: [
+                {
+                    label: "Step Response",
+                    data: voltageData,
+                    fill: false,
+                    borderColor: "blue",
+                    tension: 0.1,
+                },
+            ],
         },
         options: {
             scales: {
                 x: {
                     title: {
                         display: true,
-                        text: 'Time (s)'
-                    }
+                        text: "Time (s)",
+                    },
                 },
                 y: {
                     title: {
                         display: true,
-                        text: 'Voltage (V)'
-                    }
-                }
-            }
-        }
+                        text: "Voltage (V)",
+                    },
+                },
+            },
+        },
     });
 }
 /* FIM da Func Degrau */
@@ -161,78 +180,90 @@ function calculateBodeData(resistencia, capacitancia) {
     return { freqData, magData, phaseData };
 }
 
-function plotBodeDiagram(resistencia, capacitancia, canvasIdMag, canvasIdPhase) {
-    const { freqData, magData, phaseData } = calculateBodeData(resistencia, capacitancia);
+function plotBodeDiagram(
+    resistencia,
+    capacitancia,
+    canvasIdMag,
+    canvasIdPhase
+) {
+    const { freqData, magData, phaseData } = calculateBodeData(
+        resistencia,
+        capacitancia
+    );
 
     const canvasMag = document.getElementById(canvasIdMag);
-    const ctxMag = canvasMag.getContext('2d');
+    const ctxMag = canvasMag.getContext("2d");
     const canvasPhase = document.getElementById(canvasIdPhase);
-    const ctxPhase = canvasPhase.getContext('2d');
+    const ctxPhase = canvasPhase.getContext("2d");
 
     // Plota a magnitude
     new Chart(ctxMag, {
-        type: 'line',
+        type: "line",
         data: {
             labels: freqData,
-            datasets: [{
-                label: 'Magnitude (dB)',
-                data: magData,
-                fill: false,
-                borderColor: 'red',
-                backgroundColor: 'red',
-                borderWidth: 1
-            }]
+            datasets: [
+                {
+                    label: "Magnitude (dB)",
+                    data: magData,
+                    fill: false,
+                    borderColor: "red",
+                    backgroundColor: "red",
+                    borderWidth: 1,
+                },
+            ],
         },
         options: {
             scales: {
                 x: {
-                    type: 'logarithmic',
+                    type: "logarithmic",
                     title: {
                         display: true,
-                        text: 'Frequency (Hz)'
-                    }
+                        text: "Frequency (Hz)",
+                    },
                 },
                 y: {
                     title: {
                         display: true,
-                        text: 'Magnitude (dB)'
-                    }
-                }
-            }
-        }
+                        text: "Magnitude (dB)",
+                    },
+                },
+            },
+        },
     });
 
     // Plota a fase
     new Chart(ctxPhase, {
-        type: 'line',
+        type: "line",
         data: {
             labels: freqData,
-            datasets: [{
-                label: 'Phase (degrees)',
-                data: phaseData,
-                fill: false,
-                borderColor: 'blue',
-                backgroundColor: 'blue',
-                borderWidth: 1
-            }]
+            datasets: [
+                {
+                    label: "Phase (degrees)",
+                    data: phaseData,
+                    fill: false,
+                    borderColor: "blue",
+                    backgroundColor: "blue",
+                    borderWidth: 1,
+                },
+            ],
         },
         options: {
             scales: {
                 x: {
-                    type: 'logarithmic',
+                    type: "logarithmic",
                     title: {
                         display: true,
-                        text: 'Frequency (Hz)'
-                    }
+                        text: "Frequency (Hz)",
+                    },
                 },
                 y: {
                     title: {
                         display: true,
-                        text: 'Phase (degrees)'
-                    }
-                }
-            }
-        }
+                        text: "Phase (degrees)",
+                    },
+                },
+            },
+        },
     });
 }
 
@@ -242,45 +273,47 @@ function plotBodeDiagram(resistencia, capacitancia, canvasIdMag, canvasIdPhase) 
 
 function plotRootLocus(resistencia, capacitancia, canvasId) {
     const canvas = document.getElementById(canvasId);
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
 
     // Para um circuito RC, há apenas um polo, então o LGR é apenas um ponto.
     const pole = -1 / (resistencia * capacitancia);
 
     // Cria o gráfico do LGR
     new Chart(ctx, {
-        type: 'scatter',
+        type: "scatter",
         data: {
-            datasets: [{
-                label: 'Polo',
-                data: [{ x: pole, y: 0 }],
-                backgroundColor: 'red'
-            }]
+            datasets: [
+                {
+                    label: "Polo",
+                    data: [{ x: pole, y: 0 }],
+                    backgroundColor: "red",
+                },
+            ],
         },
         options: {
             scales: {
                 x: {
                     title: {
                         display: true,
-                        text: 'Real'
-                    }
+                        text: "Real",
+                    },
                 },
                 y: {
                     title: {
                         display: true,
-                        text: 'Imaginary'
+                        text: "Imaginary",
                     },
                     beginAtZero: true,
                     min: -1,
-                    max: 1
-                }
+                    max: 1,
+                },
             },
             plugins: {
                 legend: {
-                    display: false
-                }
-            }
-        }
+                    display: false,
+                },
+            },
+        },
     });
 }
 
