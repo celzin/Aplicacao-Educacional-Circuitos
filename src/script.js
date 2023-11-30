@@ -1,7 +1,6 @@
 let selectedImage = 1;
 
 function selectImage(imageNumber) {
-    teste();
     selectedImage = imageNumber;
     console.log(imageNumber);
 }
@@ -44,8 +43,6 @@ function validateAndSimulate() {
         });
     }
 }
-
-// Testanfo os Gráficos
 
 function simulate() {
     const resistencia = parseFloat(

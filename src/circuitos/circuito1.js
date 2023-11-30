@@ -1,9 +1,4 @@
-function teste() {
-    console.log("oiiiiiiii");
-}
-
 /* Calculando a Resposta Degrau*/
-
 function calculateTransferFunction(resistencia, capacitancia) {
     return {
         magnitude: function (omega) {
@@ -70,10 +65,9 @@ function plotStepResponse(resistencia, capacitancia, voltagem, canvasId) {
         },
     });
 }
-/* FIM da Func Degrau */
+
 
 /* Diagrama de Bode */
-
 function calculateBodeData(resistencia, capacitancia) {
     const freqData = [];
     const magData = [];
@@ -185,10 +179,7 @@ function plotBodeDiagram(
     });
 }
 
-/* FIM De Bode */
-
 /* Lugar Geometrico das Raízes */
-
 function plotRootLocus(resistencia, capacitancia, canvasId) {
     const canvas = document.getElementById(canvasId);
     const ctx = canvas.getContext("2d");
@@ -239,5 +230,3 @@ function plotRootLocus(resistencia, capacitancia, canvasId) {
         },
     });
 }
-
-/* FIM LGR */
