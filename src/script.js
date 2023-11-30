@@ -72,6 +72,21 @@ function simulate() {
             plotRootLocus(resistencia, capacitancia, "rootLocusCanvas");
             break;
         case 2:
+            calculateTransferFunction2(resistencia, capacitancia);
+            plotStepResponse2(
+                resistencia,
+                capacitancia,
+                voltagem,
+                "stepResponseCanvas"
+            );
+            calculateBodeData2(resistencia, capacitancia);
+            plotBodeDiagram2(
+                resistencia,
+                capacitancia,
+                "bodeMagnitudeCanvas",
+                "bodePhaseCanvas"
+            );
+            plotRootLocus2(resistencia, capacitancia, "rootLocusCanvas");
             break;
         case 3:
             break;

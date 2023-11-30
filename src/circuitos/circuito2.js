@@ -1,20 +1,18 @@
 /* Calculando a Resposta Degrau*/
-function calculateTransferFunction(resistencia, capacitancia) {
+function calculateTransferFunction2(resistencia, capacitancia) {
     return {
         magnitude: function (omega) {
-            let denom = Math.sqrt(
-                1 + Math.pow(omega * resistencia * capacitancia, 2)
-            );
-            return 1 / denom;
+            let denom = Math.sqrt(1 + Math.pow(1 / (omega * resistencia * capacitancia), 2));
+            return omega * resistencia * capacitancia / denom;
         },
         phase: function (omega) {
-            return -Math.atan(omega * resistencia * capacitancia);
+            return Math.atan(1 / (omega * resistencia * capacitancia));
         },
     };
 }
 
 // Esta função calcula a resposta ao degrau de um circuito RC
-function plotStepResponse(resistencia, capacitancia, voltagem, canvasId) {
+function plotStepResponse2(resistencia, capacitancia, voltagem, canvasId) {
     const canvas = document.getElementById(canvasId);
     const ctx = canvas.getContext("2d");
 
@@ -27,7 +25,7 @@ function plotStepResponse(resistencia, capacitancia, voltagem, canvasId) {
     let timeData = [];
     let voltageData = [];
     for (let t = 0; t <= timeMax; t += timeStep) {
-        const vOut = voltagem * (1 - Math.exp(-t / tau));
+        const vOut = voltagem * Math.exp(-t / tau);
         timeData.push(t);
         voltageData.push(vOut);
     }
@@ -67,20 +65,20 @@ function plotStepResponse(resistencia, capacitancia, voltagem, canvasId) {
 }
 
 /* Diagrama de Bode */
-function calculateBodeData(resistencia, capacitancia) {
+function calculateBodeData2(resistencia, capacitancia) {
     const freqData = [];
     const magData = [];
     const phaseData = [];
 
+    // Gera os dados para o diagrama de Bode de CR Passa-Alta
     for (let i = 0; i <= 100; i++) {
-        // Calcula a frequência em escala logarítmica
         const freq = Math.pow(10, (i / 100) * -4);
         const omega = 2 * Math.PI * freq;
         const rc = resistencia * capacitancia;
 
-        // Calcula a magnitude e a fase
-        const mag = 20 * Math.log10(1 / Math.sqrt(1 + Math.pow(omega * rc, 2)));
-        const phase = -Math.atan(omega * rc) * (180 / Math.PI);
+        // Atualiza as fórmulas para magnitude e fase de CR Passa-Alta
+        const mag = 20 * Math.log10(omega * rc / Math.sqrt(1 + Math.pow(omega * rc, 2)));
+        const phase = (Math.PI / 2) - Math.atan(omega * rc);
 
         freqData.push(freq);
         magData.push(mag);
@@ -90,13 +88,13 @@ function calculateBodeData(resistencia, capacitancia) {
     return { freqData, magData, phaseData };
 }
 
-function plotBodeDiagram(
+function plotBodeDiagram2(
     resistencia,
     capacitancia,
     canvasIdMag,
     canvasIdPhase
 ) {
-    const { freqData, magData, phaseData } = calculateBodeData(
+    const { freqData, magData, phaseData } = calculateBodeData2(
         resistencia,
         capacitancia
     );
@@ -178,7 +176,7 @@ function plotBodeDiagram(
 }
 
 /* Lugar Geometrico das Raízes */
-function plotRootLocus(resistencia, capacitancia, canvasId) {
+function plotRootLocus2(resistencia, capacitancia, canvasId) {
     const canvas = document.getElementById(canvasId);
     const ctx = canvas.getContext("2d");
 
