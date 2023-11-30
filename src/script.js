@@ -58,9 +58,19 @@ function simulate() {
     switch (parseInt(selectedImage)) {
         case 1:
             calculateTransferFunction(resistencia, capacitancia);
-            plotStepResponse(resistencia, capacitancia, voltagem, "stepResponseCanvas");
+            plotStepResponse(
+                resistencia,
+                capacitancia,
+                voltagem,
+                "stepResponseCanvas"
+            );
             calculateBodeData(resistencia, capacitancia);
-            plotBodeDiagram(resistencia, capacitancia, "bodeMagnitudeCanvas", "bodePhaseCanvas");
+            plotBodeDiagram(
+                resistencia,
+                capacitancia,
+                "bodeMagnitudeCanvas",
+                "bodePhaseCanvas"
+            );
             plotRootLocus(resistencia, capacitancia, "rootLocusCanvas");
             break;
         case 2:
@@ -156,7 +166,8 @@ function calculateBodeData(resistencia, capacitancia) {
 
     for (let i = 0; i <= 100; i++) {
         // Calcula a frequência em escala logarítmica
-        const freq = Math.pow(10, i / 20); // varia de 1 a 10^5
+        // Agora varia de 10^-4 (quando i=0) até 10^0 (quando i=100)
+        const freq = Math.pow(10, (i / 100) * -4);
         const omega = 2 * Math.PI * freq;
         const rc = resistencia * capacitancia;
 
@@ -278,7 +289,11 @@ function plotRootLocus(resistencia, capacitancia, canvasId) {
                 {
                     label: "Polo",
                     data: [{ x: pole, y: 0 }],
+                    pointStyle: "cross",
+                    radius: 10,
+                    borderColor: "red",
                     backgroundColor: "red",
+                    borderWidth: 2,
                 },
             ],
         },
