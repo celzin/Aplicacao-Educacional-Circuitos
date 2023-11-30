@@ -71,11 +71,15 @@ function simulate() {
             break;
 
         case 3:
-
+            calculateParallelTransferFunction3(resistencia, capacitancia);
+            plotStepResponse3(resistencia, capacitancia, voltagem, "stepResponseCanvas");
+            calculateBodeData3(resistencia, capacitancia);
+            plotBodeDiagram3(resistencia, capacitancia, "bodeMagnitudeCanvas", "bodePhaseCanvas");
+            plotRootLocus3(resistencia, capacitancia, "rootLocusCanvas");
             break;
 
         case 4:
-            calculateTransferFunction4(resistencia, capacitancia);
+            calculateParallelTransferFunction4(resistencia, capacitancia);
             plotStepResponse4(resistencia, capacitancia, voltagem, "stepResponseCanvas");
             calculateBodeData4(resistencia, capacitancia);
             plotBodeDiagram4(resistencia, capacitancia, "bodeMagnitudeCanvas", "bodePhaseCanvas");

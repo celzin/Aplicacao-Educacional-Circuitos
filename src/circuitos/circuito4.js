@@ -1,36 +1,112 @@
-/* Calculando a Resposta Degrau para CR Passa-Alta */
-function calculateTransferFunction4(resistencia, capacitancia) {
+// Calcula a função de transferência para um circuito RC paralelo
+// function calculateParallelTransferFunction4(R, C) {
+//     return {
+//         magnitude: function (omega) {
+//             let ZR = math.complex(R, 0); // Impedância do resistor como número complexo
+//             let ZC = math.complex(0, -1 / (omega * C)); // Impedância do capacitor como número complexo
+//             let ZTotal = math.divide(1, math.add(math.inv(ZR), math.inv(ZC))); // Impedância total para componentes em paralelo
+//             let VoutOverVin = math.abs(math.divide(ZC, math.add(ZR, ZC))); // A tensão no capacitor (saída) sobre a tensão de entrada
+//             return VoutOverVin; // Magnitude da função de transferência
+//         },
+//         phase: function (omega) {
+//             let ZR = math.complex(R, 0); // Impedância do resistor como número complexo
+//             let ZC = math.complex(0, -1 / (omega * C)); // Impedância do capacitor como número complexo
+//             let ZTotal = math.divide(1, math.add(math.inv(ZR), math.inv(ZC))); // Impedância total para componentes em paralelo
+//             let phaseAngle = math.atan2(math.im(ZTotal), math.re(ZTotal)); // Fase da função de transferência
+//             return phaseAngle;
+//         }
+//     };
+// }
+// Calcula a função de transferência para um circuito RC paralelo (saída no resistor)
+function calculateParallelTransferFunction4(R, C) {
     return {
         magnitude: function (omega) {
-            let numer = omega * resistencia * capacitancia;
-            let denom = Math.sqrt(1 + Math.pow(omega * resistencia * capacitancia, 2));
-            return numer / denom;
+            // A impedância do capacitor é puramente imaginária: jωC
+            let ZC = math.complex(0, -1 / (omega * C));
+            // A impedância total é a soma da impedância do resistor e do capacitor
+            let ZTotal = math.add(math.complex(R, 0), ZC);
+            // A tensão de saída é a tensão no resistor: Vout = Vin * ZR / ZTotal
+            let VoutOverVin = R / math.abs(ZTotal);
+            return VoutOverVin; // Magnitude da função de transferência
         },
         phase: function (omega) {
-            return Math.atan(1 / (omega * resistencia * capacitancia));
-        },
+            let ZC = math.complex(0, -1 / (omega * C));
+            let ZTotal = math.add(math.complex(R, 0), ZC);
+            // A fase é o ângulo da função de transferência
+            let phaseAngle = math.arg(math.divide(math.complex(R, 0), ZTotal));
+            return phaseAngle; // Fase em radianos
+        }
     };
 }
 
-/* Função que calcula a resposta ao degrau de um circuito CR Passa-Alta */
-function plotStepResponse4(resistencia, capacitancia, voltagem, canvasId) {
-    const canvas = document.getElementById(canvasId);
-    const ctx = canvas.getContext("2d");
+// Plota a resposta ao degrau para um circuito RC paralelo com a fonte de tensão no topo
+// function plotStepResponse4(R, C, voltagem, canvasId) {
+//     const canvas = document.getElementById(canvasId);
+//     const ctx = canvas.getContext('2d');
+//     const tau = R * C; // A constante de tempo tau = R * C permanece a mesma
+//     const timeMax = 5 * tau; // Tempo máximo para simulação
+//     const timeStep = timeMax / 200; // Intervalo de tempo para a simulação
+//     let timeData = [];
+//     let voltageData = [];
 
-    const tau = resistencia * capacitancia;
-    const timeMax = 5 * tau;
-    const timeStep = timeMax / 200;
+//     for (let t = 0; t <= timeMax; t += timeStep) {
+//         // vOut agora é a tensão através do resistor, o que equivale a V - Vc, onde Vc é a tensão no capacitor
+//         let vC = voltagem * (1 - Math.exp(-t / tau)); // Tensão no capacitor
+//         let vOut = voltagem - vC; // Tensão no resistor é a tensão total menos a tensão no capacitor
+//         timeData.push(t);
+//         voltageData.push(vOut);
+//     }
+
+//     // Código para plotar o gráfico de resposta ao degrau usando Chart.js
+//     new Chart(ctx, {
+//         type: "line",
+//         data: {
+//             labels: timeData,
+//             datasets: [{
+//                 label: "Step Response",
+//                 data: voltageData,
+//                 fill: false,
+//                 borderColor: "blue",
+//                 tension: 0.1
+//             }]
+//         },
+//         options: {
+//             scales: {
+//                 x: {
+//                     title: {
+//                         display: true,
+//                         text: "Time (s)"
+//                     }
+//                 },
+//                 y: {
+//                     title: {
+//                         display: true,
+//                         text: "Voltage (V)"
+//                     }
+//                 }
+//             }
+//         }
+//     });
+// }
+
+// Plota a resposta ao degrau para um circuito RC paralelo com a fonte de tensão no topo (saída no resistor)
+function plotStepResponse4(R, C, voltagem, canvasId) {
+    const canvas = document.getElementById(canvasId);
+    const ctx = canvas.getContext('2d');
+    const tau = R * C; // A constante de tempo tau = R * C permanece a mesma
+    const timeMax = 5 * tau; // Tempo máximo para simulação
+    const timeStep = timeMax / 200; // Intervalo de tempo para a simulação
     let timeData = [];
     let voltageData = [];
 
     for (let t = 0; t <= timeMax; t += timeStep) {
-        // Para um CR passa-alta, a tensão inicial no resistor é a tensão de entrada
-        // e decresce para zero, conforme a carga do capacitor.
-        const vOut = voltagem * (1 - Math.exp(-t / tau));
+        // A tensão de saída é a tensão no resistor
+        let vOut = voltagem * (1 - Math.exp(-t / tau));
         timeData.push(t);
         voltageData.push(vOut);
     }
 
+    // Código para plotar o gráfico de resposta ao degrau usando Chart.js
     new Chart(ctx, {
         type: "line",
         data: {
@@ -62,22 +138,18 @@ function plotStepResponse4(resistencia, capacitancia, voltagem, canvasId) {
     });
 }
 
-/* Diagrama de Bode para Circuito CR Passa-Alta */
-function calculateBodeData4(resistencia, capacitancia) {
+// Calcula o diagrama de Bode para um circuito RC paralelo
+function calculateBodeData4(R, C) {
+    const transferFunction = calculateParallelTransferFunction4(R, C);
     const freqData = [];
     const magData = [];
     const phaseData = [];
 
     for (let i = 0; i <= 100; i++) {
-        // Calcula a frequência em escala logarítmica
-        const freq = Math.pow(10, (i / 100) * -4);
+        const freq = Math.pow(10, i / 20 - 4);
         const omega = 2 * Math.PI * freq;
-        const rc = resistencia * capacitancia;
-
-        // Atualiza as fórmulas para magnitude e fase
-        const mag = 20 * Math.log10(omega * rc / Math.sqrt(1 + Math.pow(omega * rc, 2)));
-        const phase = (Math.PI / 2) - Math.atan(omega * rc);
-
+        const mag = 20 * math.log10(transferFunction.magnitude(omega));
+        const phase = transferFunction.phase(omega) * (180 / math.PI);
         freqData.push(freq);
         magData.push(mag);
         phaseData.push(phase);
@@ -86,100 +158,89 @@ function calculateBodeData4(resistencia, capacitancia) {
     return { freqData, magData, phaseData };
 }
 
-function plotBodeDiagram4(
-    resistencia,
-    capacitancia,
-    canvasIdMag,
-    canvasIdPhase
-) {
-    const { freqData, magData, phaseData } = calculateBodeData4(
-        resistencia,
-        capacitancia
-    );
-
+/* Plota o diagrama de Bode para um circuito RC em paralelo */
+function plotBodeDiagram4(R, C, canvasIdMag, canvasIdPhase) {
+    const { freqData, magData, phaseData } = calculateBodeData4(R, C);
     const canvasMag = document.getElementById(canvasIdMag);
-    const ctxMag = canvasMag.getContext("2d");
+    const ctxMag = canvasMag.getContext('2d');
     const canvasPhase = document.getElementById(canvasIdPhase);
-    const ctxPhase = canvasPhase.getContext("2d");
+    const ctxPhase = canvasPhase.getContext('2d');
 
     // Plota a magnitude
     new Chart(ctxMag, {
-        type: "line",
+        type: 'line',
         data: {
-            labels: freqData,
-            datasets: [
-                {
-                    label: "Magnitude (dB)",
-                    data: magData,
-                    fill: false,
-                    borderColor: "red",
-                    backgroundColor: "red",
-                    borderWidth: 1,
-                },
-            ],
+            labels: freqData.map(f => f.toFixed(2)),
+            datasets: [{
+                label: 'Magnitude (dB)',
+                data: magData,
+                borderColor: 'red',
+                fill: false
+            }]
         },
         options: {
             scales: {
                 x: {
-                    type: "logarithmic",
+                    type: 'logarithmic',
                     title: {
                         display: true,
-                        text: "Frequency (Hz)",
-                    },
+                        text: 'Frequency (Hz)'
+                    }
                 },
                 y: {
                     title: {
                         display: true,
-                        text: "Magnitude (dB)",
-                    },
-                },
-            },
-        },
+                        text: 'Magnitude (dB)'
+                    }
+                }
+            }
+        }
     });
 
     // Plota a fase
     new Chart(ctxPhase, {
-        type: "line",
+        type: 'line',
         data: {
-            labels: freqData,
-            datasets: [
-                {
-                    label: "Phase (degrees)",
-                    data: phaseData,
-                    fill: false,
-                    borderColor: "blue",
-                    backgroundColor: "blue",
-                    borderWidth: 1,
-                },
-            ],
+            labels: freqData.map(f => f.toFixed(2)),
+            datasets: [{
+                label: 'Phase (degrees)',
+                data: phaseData,
+                borderColor: 'blue',
+                fill: false
+            }]
         },
         options: {
             scales: {
                 x: {
-                    type: "logarithmic",
+                    type: 'logarithmic',
                     title: {
                         display: true,
-                        text: "Frequency (Hz)",
-                    },
+                        text: 'Frequency (Hz)'
+                    }
                 },
                 y: {
                     title: {
                         display: true,
-                        text: "Phase (degrees)",
+                        text: 'Phase (degrees)'
                     },
-                },
-            },
-        },
+                    ticks: {
+                        callback: function (value, index, values) {
+                            return Number.isInteger(value) ? value : null;
+                        }
+                    }
+                }
+            }
+        }
     });
 }
 
-/* Lugar Geometrico das Raízes */
-function plotRootLocus4(resistencia, capacitancia, canvasId) {
+/* Função para plotar o Lugar Geométrico das Raízes de um circuito RC em paralelo */
+function plotRootLocus4(R, C, canvasId) {
     const canvas = document.getElementById(canvasId);
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
 
-    // Para um circuito RC, há apenas um polo, então o LGR é apenas um ponto.
-    const pole = -1 / (resistencia * capacitancia);
+    // O polo estaria em -1/RC se fosse um sistema dinâmico
+    const pole = -1 / (R * C);
 
     // Cria o gráfico do LGR
     new Chart(ctx, {
@@ -189,12 +250,10 @@ function plotRootLocus4(resistencia, capacitancia, canvasId) {
                 {
                     label: "Polo",
                     data: [{ x: pole, y: 0 }],
-                    pointStyle: 'crossRot', // Muda o estilo do ponto para 'X'
-                    radius: 10, // Tamanho do ponto
+                    pointStyle: 'cross',
+                    radius: 5,
                     backgroundColor: "red",
-                    borderColor: "red", // Cor da borda do ponto
-                    borderWidth: 2, // Espessura da borda do ponto
-                    rotation: 90
+                    borderColor: "red",
                 },
             ],
         },
@@ -203,13 +262,15 @@ function plotRootLocus4(resistencia, capacitancia, canvasId) {
                 x: {
                     title: {
                         display: true,
-                        text: "Real",
+                        text: "Real Axis",
                     },
+                    min: -5 / (R * C),
+                    max: 0,
                 },
                 y: {
                     title: {
                         display: true,
-                        text: "Imaginary",
+                        text: "Imaginary Axis",
                     },
                     beginAtZero: true,
                     min: -1,

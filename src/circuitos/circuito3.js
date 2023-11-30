@@ -1,5 +1,5 @@
 // Calcula a função de transferência para um circuito RC paralelo
-function calculateParallelTransferFunction(R, C) {
+function calculateParallelTransferFunction3(R, C) {
     return {
         magnitude: function (omega) {
             let ZR = math.complex(R, 0); // Impedância do resistor como número complexo
@@ -20,7 +20,6 @@ function calculateParallelTransferFunction(R, C) {
 
 // Plota a resposta ao degrau para um circuito RC paralelo
 function plotStepResponse3(R, C, voltagem, canvasId) {
-    // Esta implementação simplificada assume que a tensão de saída segue a mesma constante de tempo que o circuito RC em série
     const canvas = document.getElementById(canvasId);
     const ctx = canvas.getContext('2d');
     const tau = R * C;
@@ -69,8 +68,8 @@ function plotStepResponse3(R, C, voltagem, canvasId) {
 }
 
 // Calcula o diagrama de Bode para um circuito RC paralelo
-function calculateBodeData(R, C) {
-    const transferFunction = calculateParallelTransferFunction(R, C);
+function calculateBodeData3(R, C) {
+    const transferFunction = calculateParallelTransferFunction3(R, C);
     const freqData = [];
     const magData = [];
     const phaseData = [];
@@ -89,8 +88,8 @@ function calculateBodeData(R, C) {
 }
 
 /* Plota o diagrama de Bode para um circuito RC em paralelo */
-function plotBodeDiagram(R, C, canvasIdMag, canvasIdPhase) {
-    const { freqData, magData, phaseData } = calculateBodeData(R, C);
+function plotBodeDiagram3(R, C, canvasIdMag, canvasIdPhase) {
+    const { freqData, magData, phaseData } = calculateBodeData3(R, C);
     const canvasMag = document.getElementById(canvasIdMag);
     const ctxMag = canvasMag.getContext('2d');
     const canvasPhase = document.getElementById(canvasIdPhase);
@@ -165,7 +164,7 @@ function plotBodeDiagram(R, C, canvasIdMag, canvasIdPhase) {
 }
 
 /* Função para plotar o Lugar Geométrico das Raízes de um circuito RC em paralelo */
-function plotRootLocus(R, C, canvasId) {
+function plotRootLocus3(R, C, canvasId) {
     const canvas = document.getElementById(canvasId);
     const ctx = canvas.getContext('2d');
 
