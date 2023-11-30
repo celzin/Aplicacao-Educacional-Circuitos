@@ -1,17 +1,19 @@
 // Calcula a função de transferência para um circuito RC paralelo
-function calculateParallelTransferFunction3(R, C) {
+function calculateParallelTransferFunction(R, C) {
     return {
         magnitude: function (omega) {
-            let ZR = R; // Impedância do resistor
-            let ZC = 1 / (omega * C); // Impedância do capacitor (parte imaginária)
-            let ZTotal = (ZR * ZC) / (ZR + ZC); // Impedância total para componentes em paralelo
-            let VoutOverVin = ZC / (ZR + ZC); // A tensão no capacitor (saída) sobre a tensão de entrada
-            return Math.abs(VoutOverVin); // Magnitude da função de transferência
+            let ZR = math.complex(R, 0); // Impedância do resistor como número complexo
+            let ZC = math.complex(0, -1 / (omega * C)); // Impedância do capacitor como número complexo
+            let ZTotal = math.divide(1, math.add(math.inv(ZR), math.inv(ZC))); // Impedância total para componentes em paralelo
+            let VoutOverVin = math.abs(math.divide(ZC, math.add(ZR, ZC))); // A tensão no capacitor (saída) sobre a tensão de entrada
+            return VoutOverVin; // Magnitude da função de transferência
         },
         phase: function (omega) {
-            let ZC = 1 / (omega * C); // Impedância do capacitor (parte imaginária)
-            // A fase é o ângulo da função de transferência
-            return Math.atan2(-ZC, R); // Fase da função de transferência
+            let ZR = math.complex(R, 0); // Impedância do resistor como número complexo
+            let ZC = math.complex(0, -1 / (omega * C)); // Impedância do capacitor como número complexo
+            let ZTotal = math.divide(1, math.add(math.inv(ZR), math.inv(ZC))); // Impedância total para componentes em paralelo
+            let phaseAngle = math.atan2(math.im(ZTotal), math.re(ZTotal)); // Fase da função de transferência
+            return phaseAngle;
         }
     };
 }
@@ -67,27 +69,28 @@ function plotStepResponse3(R, C, voltagem, canvasId) {
 }
 
 // Calcula o diagrama de Bode para um circuito RC paralelo
-function calculateBodeData3(R, C) {
-    const transferFunction = calculateParallelTransferFunction3(R, C);
+function calculateBodeData(R, C) {
+    const transferFunction = calculateParallelTransferFunction(R, C);
     const freqData = [];
     const magData = [];
     const phaseData = [];
 
     for (let i = 0; i <= 100; i++) {
-        const freq = Math.pow(10, i - 4); // de 10^-4 a 10^1
+        const freq = Math.pow(10, i / 20 - 4); // de 10^-4 a 10^1
         const omega = 2 * Math.PI * freq;
-        magData.push(20 * Math.log10(transferFunction.magnitude(omega)));
-        phaseData.push(transferFunction.phase(omega) * (180 / Math.PI));
+        const mag = 20 * math.log10(transferFunction.magnitude(omega));
+        const phase = transferFunction.phase(omega) * (180 / math.PI);
         freqData.push(freq);
+        magData.push(mag);
+        phaseData.push(phase);
     }
 
-    // Retorna os dados para serem usados em plotBodeDiagram
     return { freqData, magData, phaseData };
 }
 
 /* Plota o diagrama de Bode para um circuito RC em paralelo */
-function plotBodeDiagram3(R, C, canvasIdMag, canvasIdPhase) {
-    const { freqData, magData, phaseData } = calculateBodeData3(R, C);
+function plotBodeDiagram(R, C, canvasIdMag, canvasIdPhase) {
+    const { freqData, magData, phaseData } = calculateBodeData(R, C);
     const canvasMag = document.getElementById(canvasIdMag);
     const ctxMag = canvasMag.getContext('2d');
     const canvasPhase = document.getElementById(canvasIdPhase);
@@ -163,7 +166,7 @@ function plotBodeDiagram3(R, C, canvasIdMag, canvasIdPhase) {
 }
 
 /* Função para plotar o Lugar Geométrico das Raízes de um circuito RC em paralelo */
-function plotRootLocus3(R, C, canvasId) {
+function plotRootLocus(R, C, canvasId) {
     const canvas = document.getElementById(canvasId);
     const ctx = canvas.getContext('2d');
 
