@@ -1,5 +1,5 @@
 /* Calculando a Resposta Degrau para CR Passa-Alta */
-function calculateTransferFunction(resistencia, capacitancia) {
+function calculateTransferFunction4(resistencia, capacitancia) {
     return {
         magnitude: function (omega) {
             let numer = omega * resistencia * capacitancia;
@@ -13,7 +13,7 @@ function calculateTransferFunction(resistencia, capacitancia) {
 }
 
 /* Função que calcula a resposta ao degrau de um circuito CR Passa-Alta */
-function plotStepResponse(resistencia, capacitancia, voltagem, canvasId) {
+function plotStepResponse4(resistencia, capacitancia, voltagem, canvasId) {
     const canvas = document.getElementById(canvasId);
     const ctx = canvas.getContext("2d");
 
@@ -63,7 +63,7 @@ function plotStepResponse(resistencia, capacitancia, voltagem, canvasId) {
 }
 
 /* Diagrama de Bode para Circuito CR Passa-Alta */
-function calculateBodeData(resistencia, capacitancia) {
+function calculateBodeData4(resistencia, capacitancia) {
     const freqData = [];
     const magData = [];
     const phaseData = [];
@@ -86,13 +86,13 @@ function calculateBodeData(resistencia, capacitancia) {
     return { freqData, magData, phaseData };
 }
 
-function plotBodeDiagram(
+function plotBodeDiagram4(
     resistencia,
     capacitancia,
     canvasIdMag,
     canvasIdPhase
 ) {
-    const { freqData, magData, phaseData } = calculateBodeData(
+    const { freqData, magData, phaseData } = calculateBodeData4(
         resistencia,
         capacitancia
     );
@@ -174,7 +174,7 @@ function plotBodeDiagram(
 }
 
 /* Lugar Geometrico das Raízes */
-function plotRootLocus(resistencia, capacitancia, canvasId) {
+function plotRootLocus4(resistencia, capacitancia, canvasId) {
     const canvas = document.getElementById(canvasId);
     const ctx = canvas.getContext("2d");
 
