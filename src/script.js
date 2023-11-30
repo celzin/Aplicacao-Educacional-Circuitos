@@ -56,19 +56,9 @@ function simulate() {
     switch (parseInt(selectedImage)) {
         case 1:
             calculateTransferFunction(resistencia, capacitancia);
-            plotStepResponse(
-                resistencia,
-                capacitancia,
-                voltagem,
-                "stepResponseCanvas"
-            );
+            plotStepResponse(resistencia, capacitancia, voltagem, "stepResponseCanvas");
             calculateBodeData(resistencia, capacitancia);
-            plotBodeDiagram(
-                resistencia,
-                capacitancia,
-                "bodeMagnitudeCanvas",
-                "bodePhaseCanvas"
-            );
+            plotBodeDiagram(resistencia, capacitancia, "bodeMagnitudeCanvas", "bodePhaseCanvas");
             plotRootLocus(resistencia, capacitancia, "rootLocusCanvas");
             break;
 
