@@ -101,6 +101,11 @@ function simulate() {
             break;
 
         case 6:
+            calculateTwoStageTransferFunction6(resistencia, capacitancia, resistencia, capacitancia);
+            plotStepResponse6(resistencia, capacitancia, resistencia, capacitancia, voltagem, "stepResponseCanvas");
+            calculateBodeData6(resistencia, capacitancia, resistencia, capacitancia);
+            plotBodeDiagram6(resistencia, capacitancia, resistencia, capacitancia, "bodeMagnitudeCanvas", "bodePhaseCanvas")
+            plotRootLocus6(resistencia, capacitancia, resistencia, capacitancia, "rootLocusCanvas");
             break;
         default:
     }
