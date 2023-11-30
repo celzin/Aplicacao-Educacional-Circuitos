@@ -23,7 +23,7 @@ function plotStepResponse3(R, C, voltagem, canvasId) {
     // Esta implementação simplificada assume que a tensão de saída segue a mesma constante de tempo que o circuito RC em série
     const canvas = document.getElementById(canvasId);
     const ctx = canvas.getContext('2d');
-    const tau = R * C; // constante de tempo
+    const tau = R * C;
     const timeMax = 5 * tau;
     const timeStep = timeMax / 200;
     let timeData = [];
@@ -42,7 +42,7 @@ function plotStepResponse3(R, C, voltagem, canvasId) {
             datasets: [
                 {
                     label: "Step Response",
-                    data: [voltagem, voltagem], // Mesmo valor de voltagem para ambos os pontos
+                    data: [voltagem, voltagem],
                     fill: false,
                     borderColor: "blue",
                     tension: 0.1,
@@ -76,7 +76,7 @@ function calculateBodeData(R, C) {
     const phaseData = [];
 
     for (let i = 0; i <= 100; i++) {
-        const freq = Math.pow(10, i / 20 - 4); // de 10^-4 a 10^1
+        const freq = Math.pow(10, i / 20 - 4);
         const omega = 2 * Math.PI * freq;
         const mag = 20 * math.log10(transferFunction.magnitude(omega));
         const phase = transferFunction.phase(omega) * (180 / math.PI);
@@ -155,7 +155,6 @@ function plotBodeDiagram(R, C, canvasIdMag, canvasIdPhase) {
                     },
                     ticks: {
                         callback: function (value, index, values) {
-                            // Formata os ticks para que mostrem apenas valores inteiros
                             return Number.isInteger(value) ? value : null;
                         }
                     }
@@ -180,9 +179,9 @@ function plotRootLocus(R, C, canvasId) {
             datasets: [
                 {
                     label: "Polo",
-                    data: [{ x: pole, y: 0 }], // Polo no eixo negativo real
-                    pointStyle: 'cross', // Estilo do ponto como 'cross'
-                    radius: 5, // Tamanho do ponto
+                    data: [{ x: pole, y: 0 }],
+                    pointStyle: 'cross',
+                    radius: 5,
                     backgroundColor: "red",
                     borderColor: "red",
                 },
@@ -195,8 +194,8 @@ function plotRootLocus(R, C, canvasId) {
                         display: true,
                         text: "Real Axis",
                     },
-                    min: -5 / (R * C), // Definindo um mínimo para mostrar o polo claramente
-                    max: 0, // Máximo no eixo real é 0
+                    min: -5 / (R * C),
+                    max: 0,
                 },
                 y: {
                     title: {
