@@ -341,7 +341,8 @@ p {
         line-height: 25px;
         /* color: var(--group-color); */
         color: var(--input-placeholder);
-        background: var(--group-background);
+        /* background: var(--group-background); */
+        background: #bdcaca;
         border: 1px solid var(--group-border);
         transition: background 0.3s ease, border 0.3s ease, color 0.3s ease;
     }
