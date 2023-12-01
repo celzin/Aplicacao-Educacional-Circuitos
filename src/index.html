@@ -20,7 +20,10 @@
             <header>
                 <div class="overlay">
                     <h1 class="h1-header">
-                        Modelagem de Circuitos para Controle
+                        Modelagem de
+                    </h1>
+                    <h1 class="h1-header">
+                        Circuitos para Controle
                     </h1>
                     <h3>Aprendendo com diagramas</h3>
                     <p></p>
@@ -104,23 +107,24 @@
             </div>
             <!-- ... -->
 
-            <div class="graph-placeholder">
-                <!-- O gráfico será inserido aqui. -->
+            <!-- <div class="graph-placeholder">
                 <h1 id="resultado"></h1>
-            </div>
+            </div> -->
 
             <!-- GRÁFICOS -->
-            <h2>Resposta ao Degrau</h2>
-            <canvas id="stepResponseCanvas" max-width="250" max-height="250"></canvas>
+            <div id="graphsSection" style="display: none;">
+                <h2>Resposta ao Degrau</h2>
+                <canvas id="stepResponseCanvas" max-width="250" max-height="250"></canvas>
 
-            <h2>Diagrama de Bode</h2>
-            <canvas id="bodeMagnitudeCanvas" max-width="250" max-height="250"></canvas>
-            <canvas id="bodePhaseCanvas" max-width="250" max-height="250"></canvas>
+                <h2>Diagrama de Bode</h2>
+                <canvas id="bodeMagnitudeCanvas" max-width="250" max-height="250"></canvas>
+                <canvas id="bodePhaseCanvas" max-width="250" max-height="250"></canvas>
 
-            <h2>LGR</h2>
-            <canvas id="rootLocusCanvas" max-width="250" max-height="250"></canvas>
-
+                <h2>LGR</h2>
+                <canvas id="rootLocusCanvas" max-width="250" max-height="250"></canvas>
+            </div>
             <!-- ... -->
+
         </div>
     </body>
 

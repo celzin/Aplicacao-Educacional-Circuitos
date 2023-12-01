@@ -35,6 +35,8 @@ function validateAndSimulate() {
 
     if (isValid) {
         simulate();
+        // Mostrar a seção de gráficos
+        document.getElementById('graphsSection').style.display = 'block'; // ou 'flex'
     } else {
         alert("Preencha todos os campos!");
         document.documentElement.scrollIntoView({
