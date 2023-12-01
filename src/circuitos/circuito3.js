@@ -37,16 +37,14 @@ function plotStepResponse3(R, C, voltagem, canvasId) {
     new Chart(ctx, {
         type: "line",
         data: {
-            labels: [0, 1], // Simplesmente dois pontos no tempo para criar uma linha horizontal
-            datasets: [
-                {
-                    label: "Step Response",
-                    data: [voltagem, voltagem],
-                    fill: false,
-                    borderColor: "blue",
-                    tension: 0.1,
-                },
-            ],
+            labels: timeData,
+            datasets: [{
+                label: "Step Response",
+                data: voltageData,
+                fill: false,
+                borderColor: "blue",
+                tension: 0.1,
+            }],
         },
         options: {
             scales: {
