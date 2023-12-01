@@ -116,8 +116,8 @@ function plotStepResponse4(R, C, voltagem, canvasId) {
                 data: voltageData,
                 fill: false,
                 borderColor: "blue",
-                tension: 0.1
-            }]
+                tension: 0.1,
+            }],
         },
         options: {
             scales: {
@@ -168,69 +168,72 @@ function plotBodeDiagram4(R, C, canvasIdMag, canvasIdPhase) {
 
     // Plota a magnitude
     new Chart(ctxMag, {
-        type: 'line',
+        type: "line",
         data: {
-            labels: freqData.map(f => f.toFixed(2)),
-            datasets: [{
-                label: 'Magnitude (dB)',
-                data: magData,
-                borderColor: 'red',
-                fill: false
-            }]
+            labels: freqData,
+            datasets: [
+                {
+                    label: "Magnitude (dB)",
+                    data: magData,
+                    fill: false,
+                    borderColor: "red",
+                    backgroundColor: "red",
+                    borderWidth: 1,
+                },
+            ],
         },
         options: {
             scales: {
                 x: {
-                    type: 'logarithmic',
+                    type: "logarithmic",
                     title: {
                         display: true,
-                        text: 'Frequency (Hz)'
-                    }
+                        text: "Frequency (Hz)",
+                    },
                 },
                 y: {
                     title: {
                         display: true,
-                        text: 'Magnitude (dB)'
-                    }
-                }
-            }
-        }
+                        text: "Magnitude (dB)",
+                    },
+                },
+            },
+        },
     });
 
     // Plota a fase
     new Chart(ctxPhase, {
-        type: 'line',
+        type: "line",
         data: {
-            labels: freqData.map(f => f.toFixed(2)),
-            datasets: [{
-                label: 'Phase (degrees)',
-                data: phaseData,
-                borderColor: 'blue',
-                fill: false
-            }]
+            labels: freqData,
+            datasets: [
+                {
+                    label: "Phase (degrees)",
+                    data: phaseData,
+                    fill: false,
+                    borderColor: "blue",
+                    backgroundColor: "blue",
+                    borderWidth: 1,
+                },
+            ],
         },
         options: {
             scales: {
                 x: {
-                    type: 'logarithmic',
+                    type: "logarithmic",
                     title: {
                         display: true,
-                        text: 'Frequency (Hz)'
-                    }
+                        text: "Frequency (Hz)",
+                    },
                 },
                 y: {
                     title: {
                         display: true,
-                        text: 'Phase (degrees)'
+                        text: "Phase (degrees)",
                     },
-                    ticks: {
-                        callback: function (value, index, values) {
-                            return Number.isInteger(value) ? value : null;
-                        }
-                    }
-                }
-            }
-        }
+                },
+            },
+        },
     });
 }
 
