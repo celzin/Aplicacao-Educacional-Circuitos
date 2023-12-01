@@ -182,12 +182,11 @@ function plotRootLocus2(resistencia, capacitancia, canvasId) {
                 {
                     label: "Polo",
                     data: [{ x: pole, y: 0 }],
-                    pointStyle: 'crossRot', // Muda o estilo do ponto para 'X'
-                    radius: 10, // Tamanho do ponto
+                    pointStyle: 'crossRot',
+                    radius: 10,
                     backgroundColor: "red",
-                    borderColor: "red", // Cor da borda do ponto
-                    borderWidth: 2, // Espessura da borda do ponto
-                    rotation: 90
+                    borderColor: "red",
+                    borderWidth: 2
                 },
             ],
         },

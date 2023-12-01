@@ -253,10 +253,12 @@ function plotRootLocus4(R, C, canvasId) {
                 {
                     label: "Polo",
                     data: [{ x: pole, y: 0 }],
-                    pointStyle: 'cross',
-                    radius: 5,
+                    pointStyle: 'crossRot', // Muda o estilo do ponto para 'X'
+                    radius: 10, // Tamanho do ponto
                     backgroundColor: "red",
-                    borderColor: "red",
+                    borderColor: "red", // Cor da borda do ponto
+                    borderWidth: 2, // Espessura da borda do ponto
+                    rotation: 90
                 },
             ],
         },

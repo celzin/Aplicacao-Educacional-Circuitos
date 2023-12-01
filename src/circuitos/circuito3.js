@@ -180,10 +180,11 @@ function plotRootLocus3(R, C, canvasId) {
                 {
                     label: "Polo",
                     data: [{ x: pole, y: 0 }],
-                    pointStyle: 'cross',
-                    radius: 5,
+                    pointStyle: 'crossRot',
+                    radius: 10,
                     backgroundColor: "red",
                     borderColor: "red",
+                    borderWidth: 2
                 },
             ],
         },
