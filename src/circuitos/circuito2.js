@@ -88,17 +88,8 @@ function calculateBodeData2(resistencia, capacitancia) {
     return { freqData, magData, phaseData };
 }
 
-function plotBodeDiagram2(
-    resistencia,
-    capacitancia,
-    canvasIdMag,
-    canvasIdPhase
-) {
-    const { freqData, magData, phaseData } = calculateBodeData2(
-        resistencia,
-        capacitancia
-    );
-
+function plotBodeDiagram2(resistencia, capacitancia, canvasIdMag, canvasIdPhase) {
+    const { freqData, magData, phaseData } = calculateBodeData2(resistencia, capacitancia);
     const canvasMag = document.getElementById(canvasIdMag);
     const ctxMag = canvasMag.getContext("2d");
     const canvasPhase = document.getElementById(canvasIdPhase);
