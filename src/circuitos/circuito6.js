@@ -10,7 +10,7 @@ function calculateTwoStageTransferFunction6(R1, C1, R2, C2) {
         },
         phase: function (omega) {
             return -Math.atan(omega * R1 * C1) - Math.atan(omega * R2 * C2);
-        },
+        }
     };
 }
 
@@ -37,13 +37,15 @@ function plotStepResponse6(R1, C1, R2, C2, voltagem, canvasId) {
         type: "line",
         data: {
             labels: timeData,
-            datasets: [{
-                label: "Step Response",
-                data: voltageData,
-                fill: false,
-                borderColor: "blue",
-                tension: 0.1
-            }]
+            datasets: [
+                {
+                    label: "Step Response",
+                    data: voltageData,
+                    fill: false,
+                    borderColor: "blue",
+                    tension: 0.1
+                }
+            ]
         },
         options: {
             scales: {
@@ -146,7 +148,7 @@ function plotBodeDiagram6(R1, C1, R2, C2, canvasIdMag, canvasIdPhase) {
     const phaseData = [];
 
     for (let i = 0; i <= 100; i++) {
-        const freq = Math.pow(10, (i / 20)); // Frequência em escala logarítmica de 10^(-4) até 10^1
+        const freq = Math.pow(10, i / 20); // Frequência em escala logarítmica de 10^(-4) até 10^1
         const omega = 2 * Math.PI * freq; // Frequência angular
 
         // Cálculo das impedâncias complexas
@@ -171,36 +173,38 @@ function plotBodeDiagram6(R1, C1, R2, C2, canvasIdMag, canvasIdPhase) {
 
     // Obter os elementos canvas para magnitude e fase
     const canvasMag = document.getElementById(canvasIdMag);
-    const ctxMag = canvasMag.getContext('2d');
+    const ctxMag = canvasMag.getContext("2d");
     const canvasPhase = document.getElementById(canvasIdPhase);
-    const ctxPhase = canvasPhase.getContext('2d');
+    const ctxPhase = canvasPhase.getContext("2d");
 
     // Criar o gráfico de magnitude
     new Chart(ctxMag, {
-        type: 'line',
+        type: "line",
         data: {
             labels: freqData,
-            datasets: [{
-                label: 'Magnitude (dB)',
-                data: magData,
-                fill: false,
-                borderColor: 'red',
-                borderWidth: 1
-            }]
+            datasets: [
+                {
+                    label: "Magnitude (dB)",
+                    data: magData,
+                    fill: false,
+                    borderColor: "red",
+                    borderWidth: 1
+                }
+            ]
         },
         options: {
             scales: {
                 x: {
-                    type: 'logarithmic',
+                    type: "logarithmic",
                     title: {
                         display: true,
-                        text: 'Frequency (Hz)'
+                        text: "Frequency (Hz)"
                     }
                 },
                 y: {
                     title: {
                         display: true,
-                        text: 'Magnitude (dB)'
+                        text: "Magnitude (dB)"
                     }
                 }
             }
@@ -209,30 +213,32 @@ function plotBodeDiagram6(R1, C1, R2, C2, canvasIdMag, canvasIdPhase) {
 
     // Criar o gráfico de fase
     new Chart(ctxPhase, {
-        type: 'line',
+        type: "line",
         data: {
             labels: freqData,
-            datasets: [{
-                label: 'Phase (degrees)',
-                data: phaseData,
-                fill: false,
-                borderColor: 'blue',
-                borderWidth: 1
-            }]
+            datasets: [
+                {
+                    label: "Phase (degrees)",
+                    data: phaseData,
+                    fill: false,
+                    borderColor: "blue",
+                    borderWidth: 1
+                }
+            ]
         },
         options: {
             scales: {
                 x: {
-                    type: 'logarithmic',
+                    type: "logarithmic",
                     title: {
                         display: true,
-                        text: 'Frequency (Hz)'
+                        text: "Frequency (Hz)"
                     }
                 },
                 y: {
                     title: {
                         display: true,
-                        text: 'Phase (degrees)'
+                        text: "Phase (degrees)"
                     }
                 }
             }
@@ -251,18 +257,20 @@ function plotRootLocus6(R1, C1, R2, C2, canvasId) {
 
     // Configura os dados para o LGR
     const data = {
-        datasets: [{
-            label: 'Polos',
-            data: [
-                { x: pole1, y: 0 }, // Polo do primeiro estágio
-                { x: pole2, y: 0 }  // Polo do segundo estágio
-            ],
-            pointStyle: 'crossRot',
-            backgroundColor: 'red',
-            borderColor: 'red',
-            borderWidth: 2,
-            radius: 5
-        }]
+        datasets: [
+            {
+                label: "Polos",
+                data: [
+                    { x: pole1, y: 0 }, // Polo do primeiro estágio
+                    { x: pole2, y: 0 } // Polo do segundo estágio
+                ],
+                pointStyle: "crossRot",
+                backgroundColor: "red",
+                borderColor: "red",
+                borderWidth: 2,
+                radius: 5
+            }
+        ]
     };
 
     // Configura as opções do gráfico
@@ -271,7 +279,7 @@ function plotRootLocus6(R1, C1, R2, C2, canvasId) {
             x: {
                 title: {
                     display: true,
-                    text: 'Real Axis'
+                    text: "Real Axis"
                 },
                 min: Math.min(pole1, pole2) * 1.2, // Escala o eixo x para mostrar os polos
                 max: 0
@@ -279,7 +287,7 @@ function plotRootLocus6(R1, C1, R2, C2, canvasId) {
             y: {
                 title: {
                     display: true,
-                    text: 'Imaginary Axis'
+                    text: "Imaginary Axis"
                 },
                 beginAtZero: true,
                 min: -1,
@@ -295,7 +303,7 @@ function plotRootLocus6(R1, C1, R2, C2, canvasId) {
 
     // Plota o LGR
     new Chart(ctx, {
-        type: 'scatter',
+        type: "scatter",
         data: data,
         options: options
     });

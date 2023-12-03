@@ -21,7 +21,7 @@ function calculateParallelTransferFunction3(R, C) {
 // Plota a resposta ao degrau para um circuito RC paralelo
 function plotStepResponse3(R, C, voltagem, canvasId) {
     const canvas = document.getElementById(canvasId);
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     const tau = R * C;
     const timeMax = 5 * tau;
     const timeStep = timeMax / 200;
@@ -38,30 +38,32 @@ function plotStepResponse3(R, C, voltagem, canvasId) {
         type: "line",
         data: {
             labels: timeData,
-            datasets: [{
-                label: "Step Response",
-                data: voltageData,
-                fill: false,
-                borderColor: "blue",
-                tension: 0.1,
-            }],
+            datasets: [
+                {
+                    label: "Step Response",
+                    data: voltageData,
+                    fill: false,
+                    borderColor: "blue",
+                    tension: 0.1
+                }
+            ]
         },
         options: {
             scales: {
                 x: {
                     title: {
                         display: true,
-                        text: "Time (s)",
-                    },
+                        text: "Time (s)"
+                    }
                 },
                 y: {
                     title: {
                         display: true,
-                        text: "Voltage (V)",
-                    },
-                },
-            },
-        },
+                        text: "Voltage (V)"
+                    }
+                }
+            }
+        }
     });
 }
 
@@ -89,9 +91,9 @@ function calculateBodeData3(R, C) {
 function plotBodeDiagram3(R, C, canvasIdMag, canvasIdPhase) {
     const { freqData, magData, phaseData } = calculateBodeData3(R, C);
     const canvasMag = document.getElementById(canvasIdMag);
-    const ctxMag = canvasMag.getContext('2d');
+    const ctxMag = canvasMag.getContext("2d");
     const canvasPhase = document.getElementById(canvasIdPhase);
-    const ctxPhase = canvasPhase.getContext('2d');
+    const ctxPhase = canvasPhase.getContext("2d");
 
     // Plota a magnitude
     new Chart(ctxMag, {
@@ -105,9 +107,9 @@ function plotBodeDiagram3(R, C, canvasIdMag, canvasIdPhase) {
                     fill: false,
                     borderColor: "red",
                     backgroundColor: "red",
-                    borderWidth: 1,
-                },
-            ],
+                    borderWidth: 1
+                }
+            ]
         },
         options: {
             scales: {
@@ -115,17 +117,17 @@ function plotBodeDiagram3(R, C, canvasIdMag, canvasIdPhase) {
                     type: "logarithmic",
                     title: {
                         display: true,
-                        text: "Frequency (Hz)",
-                    },
+                        text: "Frequency (Hz)"
+                    }
                 },
                 y: {
                     title: {
                         display: true,
-                        text: "Magnitude (dB)",
-                    },
-                },
-            },
-        },
+                        text: "Magnitude (dB)"
+                    }
+                }
+            }
+        }
     });
 
     // Plota a fase
@@ -140,9 +142,9 @@ function plotBodeDiagram3(R, C, canvasIdMag, canvasIdPhase) {
                     fill: false,
                     borderColor: "blue",
                     backgroundColor: "blue",
-                    borderWidth: 1,
-                },
-            ],
+                    borderWidth: 1
+                }
+            ]
         },
         options: {
             scales: {
@@ -150,24 +152,24 @@ function plotBodeDiagram3(R, C, canvasIdMag, canvasIdPhase) {
                     type: "logarithmic",
                     title: {
                         display: true,
-                        text: "Frequency (Hz)",
-                    },
+                        text: "Frequency (Hz)"
+                    }
                 },
                 y: {
                     title: {
                         display: true,
-                        text: "Phase (degrees)",
-                    },
-                },
-            },
-        },
+                        text: "Phase (degrees)"
+                    }
+                }
+            }
+        }
     });
 }
 
 /* Função para plotar o Lugar Geométrico das Raízes de um circuito RC em paralelo */
 function plotRootLocus3(R, C, canvasId) {
     const canvas = document.getElementById(canvasId);
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
 
     // O polo estaria em -1/RC se fosse um sistema dinâmico
     const pole = -1 / (R * C);
@@ -180,39 +182,39 @@ function plotRootLocus3(R, C, canvasId) {
                 {
                     label: "Polo",
                     data: [{ x: pole, y: 0 }],
-                    pointStyle: 'crossRot',
+                    pointStyle: "crossRot",
                     radius: 10,
                     backgroundColor: "red",
                     borderColor: "red",
                     borderWidth: 2
-                },
-            ],
+                }
+            ]
         },
         options: {
             scales: {
                 x: {
                     title: {
                         display: true,
-                        text: "Real Axis",
+                        text: "Real Axis"
                     },
                     min: -5 / (R * C),
-                    max: 0,
+                    max: 0
                 },
                 y: {
                     title: {
                         display: true,
-                        text: "Imaginary Axis",
+                        text: "Imaginary Axis"
                     },
                     beginAtZero: true,
                     min: -1,
-                    max: 1,
-                },
+                    max: 1
+                }
             },
             plugins: {
                 legend: {
-                    display: false,
-                },
-            },
-        },
+                    display: false
+                }
+            }
+        }
     });
 }

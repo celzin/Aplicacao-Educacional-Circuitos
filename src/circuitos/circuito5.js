@@ -24,13 +24,15 @@ function plotStepResponse5(resistencia, C1, C2, voltagem, canvasId) {
         type: "line",
         data: {
             labels: timeData,
-            datasets: [{
-                label: "Step Response",
-                data: voltageData,
-                fill: false,
-                borderColor: "blue",
-                tension: 0.1
-            }]
+            datasets: [
+                {
+                    label: "Step Response",
+                    data: voltageData,
+                    fill: false,
+                    borderColor: "blue",
+                    tension: 0.1
+                }
+            ]
         },
         options: {
             scales: {
@@ -84,13 +86,15 @@ function plotBodeDiagram5(resistencia, C1, C2, canvasIdMag, canvasIdPhase) {
         type: "line",
         data: {
             labels: freqData,
-            datasets: [{
-                label: "Magnitude (dB)",
-                data: magData,
-                fill: false,
-                borderColor: "red",
-                borderWidth: 1
-            }]
+            datasets: [
+                {
+                    label: "Magnitude (dB)",
+                    data: magData,
+                    fill: false,
+                    borderColor: "red",
+                    borderWidth: 1
+                }
+            ]
         },
         options: {
             scales: {
@@ -115,13 +119,15 @@ function plotBodeDiagram5(resistencia, C1, C2, canvasIdMag, canvasIdPhase) {
         type: "line",
         data: {
             labels: freqData,
-            datasets: [{
-                label: "Phase (degrees)",
-                data: phaseData,
-                fill: false,
-                borderColor: "blue",
-                borderWidth: 1
-            }]
+            datasets: [
+                {
+                    label: "Phase (degrees)",
+                    data: phaseData,
+                    fill: false,
+                    borderColor: "blue",
+                    borderWidth: 1
+                }
+            ]
         },
         options: {
             scales: {
@@ -153,15 +159,17 @@ function plotRootLocus5(resistencia, C1, C2, canvasId) {
     new Chart(ctx, {
         type: "scatter",
         data: {
-            datasets: [{
-                label: "Polo",
-                data: [{ x: pole, y: 0 }],
-                pointStyle: 'crossRot',
-                radius: 10,
-                backgroundColor: "red",
-                borderColor: "red",
-                borderWidth: 2
-            }]
+            datasets: [
+                {
+                    label: "Polo",
+                    data: [{ x: pole, y: 0 }],
+                    pointStyle: "crossRot",
+                    radius: 10,
+                    backgroundColor: "red",
+                    borderColor: "red",
+                    borderWidth: 2
+                }
+            ]
         },
         options: {
             scales: {

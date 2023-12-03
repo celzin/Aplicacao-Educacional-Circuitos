@@ -3,11 +3,11 @@ function calculateTransferFunction2(resistencia, capacitancia) {
     return {
         magnitude: function (omega) {
             let denom = Math.sqrt(1 + Math.pow(1 / (omega * resistencia * capacitancia), 2));
-            return omega * resistencia * capacitancia / denom;
+            return (omega * resistencia * capacitancia) / denom;
         },
         phase: function (omega) {
             return Math.atan(1 / (omega * resistencia * capacitancia));
-        },
+        }
     };
 }
 
@@ -41,26 +41,26 @@ function plotStepResponse2(resistencia, capacitancia, voltagem, canvasId) {
                     data: voltageData,
                     fill: false,
                     borderColor: "blue",
-                    tension: 0.1,
-                },
-            ],
+                    tension: 0.1
+                }
+            ]
         },
         options: {
             scales: {
                 x: {
                     title: {
                         display: true,
-                        text: "Time (s)",
-                    },
+                        text: "Time (s)"
+                    }
                 },
                 y: {
                     title: {
                         display: true,
-                        text: "Voltage (V)",
-                    },
-                },
-            },
-        },
+                        text: "Voltage (V)"
+                    }
+                }
+            }
+        }
     });
 }
 
@@ -77,8 +77,8 @@ function calculateBodeData2(resistencia, capacitancia) {
         const rc = resistencia * capacitancia;
 
         // Atualiza as fórmulas para magnitude e fase de CR Passa-Alta
-        const mag = 20 * Math.log10(omega * rc / Math.sqrt(1 + Math.pow(omega * rc, 2)));
-        const phase = (Math.PI / 2) - Math.atan(omega * rc);
+        const mag = 20 * Math.log10((omega * rc) / Math.sqrt(1 + Math.pow(omega * rc, 2)));
+        const phase = Math.PI / 2 - Math.atan(omega * rc);
 
         freqData.push(freq);
         magData.push(mag);
@@ -107,9 +107,9 @@ function plotBodeDiagram2(resistencia, capacitancia, canvasIdMag, canvasIdPhase)
                     fill: false,
                     borderColor: "red",
                     backgroundColor: "red",
-                    borderWidth: 1,
-                },
-            ],
+                    borderWidth: 1
+                }
+            ]
         },
         options: {
             scales: {
@@ -117,17 +117,17 @@ function plotBodeDiagram2(resistencia, capacitancia, canvasIdMag, canvasIdPhase)
                     type: "logarithmic",
                     title: {
                         display: true,
-                        text: "Frequency (Hz)",
-                    },
+                        text: "Frequency (Hz)"
+                    }
                 },
                 y: {
                     title: {
                         display: true,
-                        text: "Magnitude (dB)",
-                    },
-                },
-            },
-        },
+                        text: "Magnitude (dB)"
+                    }
+                }
+            }
+        }
     });
 
     // Plota a fase
@@ -142,9 +142,9 @@ function plotBodeDiagram2(resistencia, capacitancia, canvasIdMag, canvasIdPhase)
                     fill: false,
                     borderColor: "blue",
                     backgroundColor: "blue",
-                    borderWidth: 1,
-                },
-            ],
+                    borderWidth: 1
+                }
+            ]
         },
         options: {
             scales: {
@@ -152,17 +152,17 @@ function plotBodeDiagram2(resistencia, capacitancia, canvasIdMag, canvasIdPhase)
                     type: "logarithmic",
                     title: {
                         display: true,
-                        text: "Frequency (Hz)",
-                    },
+                        text: "Frequency (Hz)"
+                    }
                 },
                 y: {
                     title: {
                         display: true,
-                        text: "Phase (degrees)",
-                    },
-                },
-            },
-        },
+                        text: "Phase (degrees)"
+                    }
+                }
+            }
+        }
     });
 }
 
@@ -182,37 +182,37 @@ function plotRootLocus2(resistencia, capacitancia, canvasId) {
                 {
                     label: "Polo",
                     data: [{ x: pole, y: 0 }],
-                    pointStyle: 'crossRot',
+                    pointStyle: "crossRot",
                     radius: 10,
                     backgroundColor: "red",
                     borderColor: "red",
                     borderWidth: 2
-                },
-            ],
+                }
+            ]
         },
         options: {
             scales: {
                 x: {
                     title: {
                         display: true,
-                        text: "Real",
-                    },
+                        text: "Real"
+                    }
                 },
                 y: {
                     title: {
                         display: true,
-                        text: "Imaginary",
+                        text: "Imaginary"
                     },
                     beginAtZero: true,
                     min: -1,
-                    max: 1,
-                },
+                    max: 1
+                }
             },
             plugins: {
                 legend: {
-                    display: false,
-                },
-            },
-        },
+                    display: false
+                }
+            }
+        }
     });
 }

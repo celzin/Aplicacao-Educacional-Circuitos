@@ -36,23 +36,19 @@ function validateAndSimulate() {
     if (isValid) {
         simulate();
         // Mostrar a seção de gráficos
-        document.getElementById('graphsSection').style.display = 'block'; // ou 'flex'
+        document.getElementById("graphsSection").style.display = "block"; // ou 'flex'
     } else {
         alert("Preencha todos os campos!");
         document.documentElement.scrollIntoView({
             behavior: "smooth",
-            block: "start",
+            block: "start"
         });
     }
 }
 
 function simulate() {
-    const resistencia = parseFloat(
-        document.getElementById("resistanceInput").value
-    );
-    const capacitancia = parseFloat(
-        document.getElementById("capacitanceInput").value
-    );
+    const resistencia = parseFloat(document.getElementById("resistanceInput").value);
+    const capacitancia = parseFloat(document.getElementById("capacitanceInput").value);
     const voltagem = parseFloat(document.getElementById("voltageInput").value);
 
     switch (parseInt(selectedImage)) {
@@ -100,7 +96,7 @@ function simulate() {
             calculateTwoStageTransferFunction6(resistencia, capacitancia, resistencia, capacitancia);
             plotStepResponse6(resistencia, capacitancia, resistencia, capacitancia, voltagem, "stepResponseCanvas");
             calculateBodeData6(resistencia, capacitancia, resistencia, capacitancia);
-            plotBodeDiagram6(resistencia, capacitancia, resistencia, capacitancia, "bodeMagnitudeCanvas", "bodePhaseCanvas")
+            plotBodeDiagram6(resistencia, capacitancia, resistencia, capacitancia, "bodeMagnitudeCanvas", "bodePhaseCanvas");
             plotRootLocus6(resistencia, capacitancia, resistencia, capacitancia, "rootLocusCanvas");
             break;
         default:

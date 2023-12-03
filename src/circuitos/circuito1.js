@@ -2,14 +2,12 @@
 function calculateTransferFunction(resistencia, capacitancia) {
     return {
         magnitude: function (omega) {
-            let denom = Math.sqrt(
-                1 + Math.pow(omega * resistencia * capacitancia, 2)
-            );
+            let denom = Math.sqrt(1 + Math.pow(omega * resistencia * capacitancia, 2));
             return 1 / denom;
         },
         phase: function (omega) {
             return -Math.atan(omega * resistencia * capacitancia);
-        },
+        }
     };
 }
 
@@ -43,26 +41,26 @@ function plotStepResponse(resistencia, capacitancia, voltagem, canvasId) {
                     data: voltageData,
                     fill: false,
                     borderColor: "blue",
-                    tension: 0.1,
-                },
-            ],
+                    tension: 0.1
+                }
+            ]
         },
         options: {
             scales: {
                 x: {
                     title: {
                         display: true,
-                        text: "Time (s)",
-                    },
+                        text: "Time (s)"
+                    }
                 },
                 y: {
                     title: {
                         display: true,
-                        text: "Voltage (V)",
-                    },
-                },
-            },
-        },
+                        text: "Voltage (V)"
+                    }
+                }
+            }
+        }
     });
 }
 
@@ -109,9 +107,9 @@ function plotBodeDiagram(resistencia, capacitancia, canvasIdMag, canvasIdPhase) 
                     fill: false,
                     borderColor: "red",
                     backgroundColor: "red",
-                    borderWidth: 1,
-                },
-            ],
+                    borderWidth: 1
+                }
+            ]
         },
         options: {
             scales: {
@@ -119,17 +117,17 @@ function plotBodeDiagram(resistencia, capacitancia, canvasIdMag, canvasIdPhase) 
                     type: "logarithmic",
                     title: {
                         display: true,
-                        text: "Frequency (Hz)",
-                    },
+                        text: "Frequency (Hz)"
+                    }
                 },
                 y: {
                     title: {
                         display: true,
-                        text: "Magnitude (dB)",
-                    },
-                },
-            },
-        },
+                        text: "Magnitude (dB)"
+                    }
+                }
+            }
+        }
     });
 
     // Plota a fase
@@ -144,9 +142,9 @@ function plotBodeDiagram(resistencia, capacitancia, canvasIdMag, canvasIdPhase) 
                     fill: false,
                     borderColor: "blue",
                     backgroundColor: "blue",
-                    borderWidth: 1,
-                },
-            ],
+                    borderWidth: 1
+                }
+            ]
         },
         options: {
             scales: {
@@ -154,17 +152,17 @@ function plotBodeDiagram(resistencia, capacitancia, canvasIdMag, canvasIdPhase) 
                     type: "logarithmic",
                     title: {
                         display: true,
-                        text: "Frequency (Hz)",
-                    },
+                        text: "Frequency (Hz)"
+                    }
                 },
                 y: {
                     title: {
                         display: true,
-                        text: "Phase (degrees)",
-                    },
-                },
-            },
-        },
+                        text: "Phase (degrees)"
+                    }
+                }
+            }
+        }
     });
 }
 
@@ -184,37 +182,37 @@ function plotRootLocus(resistencia, capacitancia, canvasId) {
                 {
                     label: "Polo",
                     data: [{ x: pole, y: 0 }],
-                    pointStyle: 'crossRot',
+                    pointStyle: "crossRot",
                     radius: 10,
                     backgroundColor: "red",
                     borderColor: "red",
                     borderWidth: 2
-                },
-            ],
+                }
+            ]
         },
         options: {
             scales: {
                 x: {
                     title: {
                         display: true,
-                        text: "Real",
-                    },
+                        text: "Real"
+                    }
                 },
                 y: {
                     title: {
                         display: true,
-                        text: "Imaginary",
+                        text: "Imaginary"
                     },
                     beginAtZero: true,
                     min: -1,
-                    max: 1,
-                },
+                    max: 1
+                }
             },
             plugins: {
                 legend: {
-                    display: false,
-                },
-            },
-        },
+                    display: false
+                }
+            }
+        }
     });
 }
