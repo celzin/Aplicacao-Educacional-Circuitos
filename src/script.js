@@ -7,6 +7,18 @@ let selectedImage = 1;
 function selectImage(imageNumber) {
     selectedImage = imageNumber;
     console.log(imageNumber);
+
+    if (selectedImage === 5) {
+        document.getElementById("additionalCapacitance").style.display = "block";
+    } else {
+        document.getElementById("additionalCapacitance").style.display = "none";
+    }
+
+    if (selectedImage === 6) {
+        document.getElementById("additionalResistence").style.display = "block";
+    } else {
+        document.getElementById("additionalResistence").style.display = "none";
+    }
 }
 
 function validateAndSimulate() {
@@ -55,6 +67,9 @@ function simulate() {
     const capacitancia = parseFloat(document.getElementById("capacitanceInput").value);
     const voltagem = parseFloat(document.getElementById("voltageInput").value);
 
+    const resistencia2 = parseFloat(document.getElementById("resistanceInput2").value);
+    const capacitancia2 = parseFloat(document.getElementById("capacitanceInput2").value);
+
     clearGraphs();
 
     switch (parseInt(selectedImage)) {
@@ -98,20 +113,20 @@ function simulate() {
 
         case 5:
             clearGraphs();
-            calculateEquivalentCapacitance5(capacitancia, capacitancia);
-            plotStepResponse5(resistencia, capacitancia, capacitancia, voltagem, "stepResponseCanvas");
-            calculateBodeData5(resistencia, capacitancia, capacitancia);
-            plotBodeDiagram5(resistencia, capacitancia, capacitancia, "bodeMagnitudeCanvas", "bodePhaseCanvas");
-            plotRootLocus5(resistencia, capacitancia, capacitancia, "rootLocusCanvas");
+            calculateEquivalentCapacitance5(capacitancia, capacitancia2);
+            plotStepResponse5(resistencia, capacitancia, capacitancia2, voltagem, "stepResponseCanvas");
+            calculateBodeData5(resistencia, capacitancia, capacitancia2);
+            plotBodeDiagram5(resistencia, capacitancia, capacitancia2, "bodeMagnitudeCanvas", "bodePhaseCanvas");
+            plotRootLocus5(resistencia, capacitancia, capacitancia2, "rootLocusCanvas");
             break;
 
         case 6:
             clearGraphs();
-            calculateTwoStageTransferFunction6(resistencia, capacitancia, resistencia, capacitancia);
-            plotStepResponse6(resistencia, capacitancia, resistencia, capacitancia, voltagem, "stepResponseCanvas");
-            calculateBodeData6(resistencia, capacitancia, resistencia, capacitancia);
-            plotBodeDiagram6(resistencia, capacitancia, resistencia, capacitancia, "bodeMagnitudeCanvas", "bodePhaseCanvas");
-            plotRootLocus6(resistencia, capacitancia, resistencia, capacitancia, "rootLocusCanvas");
+            calculateTwoStageTransferFunction6(resistencia, capacitancia, resistencia2, capacitancia2);
+            plotStepResponse6(resistencia, capacitancia, resistencia2, capacitancia2, voltagem, "stepResponseCanvas");
+            calculateBodeData6(resistencia, capacitancia, resistencia2, capacitancia2);
+            plotBodeDiagram6(resistencia, capacitancia, resistencia2, capacitancia2, "bodeMagnitudeCanvas", "bodePhaseCanvas");
+            plotRootLocus6(resistencia, capacitancia, resistencia2, capacitancia2, "rootLocusCanvas");
             break;
         default:
     }
