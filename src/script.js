@@ -9,15 +9,17 @@ function selectImage(imageNumber) {
     console.log(imageNumber);
 
     if (selectedImage === 5) {
-        document.getElementById("additionalCapacitance").style.display = "block";
+        document.getElementById("additionalInputCapacitanceC5").style.display = "block";
     } else {
-        document.getElementById("additionalCapacitance").style.display = "none";
+        document.getElementById("additionalInputCapacitanceC5").style.display = "none";
     }
 
     if (selectedImage === 6) {
-        document.getElementById("additionalResistence").style.display = "block";
+        document.getElementById("additionalInputResistenceC6").style.display = "block";
+        document.getElementById("additionalInputCapacitanceC6").style.display = "block";
     } else {
-        document.getElementById("additionalResistence").style.display = "none";
+        document.getElementById("additionalInputResistenceC6").style.display = "none";
+        document.getElementById("additionalInputCapacitanceC6").style.display = "none";
     }
 }
 
