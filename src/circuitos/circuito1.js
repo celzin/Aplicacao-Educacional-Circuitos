@@ -90,17 +90,8 @@ function calculateBodeData(resistencia, capacitancia) {
     return { freqData, magData, phaseData };
 }
 
-function plotBodeDiagram(
-    resistencia,
-    capacitancia,
-    canvasIdMag,
-    canvasIdPhase
-) {
-    const { freqData, magData, phaseData } = calculateBodeData(
-        resistencia,
-        capacitancia
-    );
-
+function plotBodeDiagram(resistencia, capacitancia, canvasIdMag, canvasIdPhase) {
+    const { freqData, magData, phaseData } = calculateBodeData(resistencia, capacitancia);
     const canvasMag = document.getElementById(canvasIdMag);
     const ctxMag = canvasMag.getContext("2d");
     const canvasPhase = document.getElementById(canvasIdPhase);
@@ -193,12 +184,11 @@ function plotRootLocus(resistencia, capacitancia, canvasId) {
                 {
                     label: "Polo",
                     data: [{ x: pole, y: 0 }],
-                    pointStyle: 'crossRot', // Muda o estilo do ponto para 'X'
-                    radius: 10, // Tamanho do ponto
+                    pointStyle: 'crossRot',
+                    radius: 10,
                     backgroundColor: "red",
-                    borderColor: "red", // Cor da borda do ponto
-                    borderWidth: 2, // Espessura da borda do ponto
-                    rotation: 90
+                    borderColor: "red",
+                    borderWidth: 2
                 },
             ],
         },
