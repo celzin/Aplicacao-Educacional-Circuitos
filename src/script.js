@@ -9,14 +9,14 @@ function selectImage(imageNumber) {
     console.log(imageNumber);
 
     if (selectedImage === 5) {
-        document.getElementById("additionalInputCapacitanceC5").style.display = "block";
+        document.getElementById("additionalInputCapacitanceC5").style.display = "flex";
     } else {
         document.getElementById("additionalInputCapacitanceC5").style.display = "none";
     }
 
     if (selectedImage === 6) {
-        document.getElementById("additionalInputResistenceC6").style.display = "block";
-        document.getElementById("additionalInputCapacitanceC6").style.display = "block";
+        document.getElementById("additionalInputResistenceC6").style.display = "flex";
+        document.getElementById("additionalInputCapacitanceC6").style.display = "flex";
     } else {
         document.getElementById("additionalInputResistenceC6").style.display = "none";
         document.getElementById("additionalInputCapacitanceC6").style.display = "none";
