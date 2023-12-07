@@ -9,17 +9,15 @@ function selectImage(imageNumber) {
     console.log(imageNumber);
 
     if (selectedImage === 5) {
-        document.getElementById("additionalInputCapacitanceC5").style.display = "flex";
+        document.getElementById("additionalInput1").style.display = "flex";
     } else {
-        document.getElementById("additionalInputCapacitanceC5").style.display = "none";
+        document.getElementById("additionalInput1").style.display = "none";
     }
 
     if (selectedImage === 6) {
-        document.getElementById("additionalInputResistenceC6").style.display = "flex";
-        document.getElementById("additionalInputCapacitanceC6").style.display = "flex";
+        document.getElementById("additionalInput2").style.display = "flex";
     } else {
-        document.getElementById("additionalInputResistenceC6").style.display = "none";
-        document.getElementById("additionalInputCapacitanceC6").style.display = "none";
+        document.getElementById("additionalInput2").style.display = "none";
     }
 }
 
@@ -27,6 +25,10 @@ function validateAndSimulate() {
     var resistenciaInput = document.getElementById("resistanceInput");
     var capacitanciaInput = document.getElementById("capacitanceInput");
     var condicaoInicialInput = document.getElementById("voltageInput");
+
+    var resistanceInput2 = document.getElementById("resistanceInput2");
+    var capacitanceInput2 = document.getElementById("capacitanciaInput2");
+
 
     var isValid = true;
 
@@ -51,9 +53,9 @@ function validateAndSimulate() {
         condicaoInicialInput.classList.remove("invalid");
     }
 
+    // Verificação final e execução da simulação
     if (isValid) {
         simulate();
-        // Mostrar a seção de gráficos
         document.getElementById("graphsSection").style.display = "block"; // ou 'flex'
     } else {
         alert("Preencha todos os campos!");
