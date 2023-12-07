@@ -26,9 +26,12 @@ function validateAndSimulate() {
     var capacitanciaInput = document.getElementById("capacitanceInput");
     var condicaoInicialInput = document.getElementById("voltageInput");
 
-    var resistanceInput2 = document.getElementById("resistanceInput2");
-    var capacitanceInput2 = document.getElementById("capacitanciaInput2");
+    // +capacitancia circuito 5
+    var capacitanceInputCirc5 = document.getElementById("capacitanceInputCirc5");
 
+    // +resistencia +capacitancia circuito 6
+    var resistanceInputCirc6 = document.getElementById("resistanceInputCirc6");
+    var capacitanceInputCirc6 = document.getElementById("capacitanceInputCirc6");
 
     var isValid = true;
 
@@ -53,6 +56,33 @@ function validateAndSimulate() {
         condicaoInicialInput.classList.remove("invalid");
     }
 
+    // Validação adicional para o circuito 5
+    if (selectedImage === 5) {
+        if (capacitanceInputCirc5.value === "" || capacitanceInputCirc5.value === null) {
+            capacitanceInputCirc5.classList.add("invalid");
+            isValid = false;
+        } else {
+            capacitanceInputCirc5.classList.remove("invalid");
+        }
+    }
+
+    // Validação adicional para o circuito 6
+    if (selectedImage === 6) {
+        if (resistanceInputCirc6.value === "" || resistanceInputCirc6.value === null) {
+            resistanceInputCirc6.classList.add("invalid");
+            isValid = false;
+        } else {
+            resistanceInputCirc6.classList.remove("invalid");
+        }
+
+        if (capacitanceInputCirc6.value === "" || capacitanceInputCirc6.value === null) {
+            capacitanceInputCirc6.classList.add("invalid");
+            isValid = false;
+        } else {
+            capacitanceInputCirc6.classList.remove("invalid");
+        }
+    }
+
     // Verificação final e execução da simulação
     if (isValid) {
         simulate();
@@ -71,8 +101,12 @@ function simulate() {
     const capacitancia = parseFloat(document.getElementById("capacitanceInput").value);
     const voltagem = parseFloat(document.getElementById("voltageInput").value);
 
-    const resistencia2 = parseFloat(document.getElementById("resistanceInput2").value);
-    const capacitancia2 = parseFloat(document.getElementById("capacitanceInput2").value);
+    // +capacitancia circuito 5
+    const capacitancia5 = parseFloat(document.getElementById("capacitanceInputCirc5").value);
+
+    // +resistencia +capacitancia circuito 6
+    const capacitancia6 = parseFloat(document.getElementById("capacitanceInputCirc6").value);
+    const resistencia6 = parseFloat(document.getElementById("resistanceInputCirc6").value);
 
     clearGraphs();
 
@@ -117,20 +151,20 @@ function simulate() {
 
         case 5:
             clearGraphs();
-            calculateEquivalentCapacitance5(capacitancia, capacitancia2);
-            plotStepResponse5(resistencia, capacitancia, capacitancia2, voltagem, "stepResponseCanvas");
-            calculateBodeData5(resistencia, capacitancia, capacitancia2);
-            plotBodeDiagram5(resistencia, capacitancia, capacitancia2, "bodeMagnitudeCanvas", "bodePhaseCanvas");
-            plotRootLocus5(resistencia, capacitancia, capacitancia2, "rootLocusCanvas");
+            calculateEquivalentCapacitance5(capacitancia, capacitancia5);
+            plotStepResponse5(resistencia, capacitancia, capacitancia5, voltagem, "stepResponseCanvas");
+            calculateBodeData5(resistencia, capacitancia, capacitancia5);
+            plotBodeDiagram5(resistencia, capacitancia, capacitancia5, "bodeMagnitudeCanvas", "bodePhaseCanvas");
+            plotRootLocus5(resistencia, capacitancia, capacitancia5, "rootLocusCanvas");
             break;
 
         case 6:
             clearGraphs();
-            calculateTwoStageTransferFunction6(resistencia, capacitancia, resistencia2, capacitancia2);
-            plotStepResponse6(resistencia, capacitancia, resistencia2, capacitancia2, voltagem, "stepResponseCanvas");
-            calculateBodeData6(resistencia, capacitancia, resistencia2, capacitancia2);
-            plotBodeDiagram6(resistencia, capacitancia, resistencia2, capacitancia2, "bodeMagnitudeCanvas", "bodePhaseCanvas");
-            plotRootLocus6(resistencia, capacitancia, resistencia2, capacitancia2, "rootLocusCanvas");
+            calculateTwoStageTransferFunction6(resistencia, capacitancia, resistencia6, capacitancia6);
+            plotStepResponse6(resistencia, capacitancia, resistencia6, capacitancia6, voltagem, "stepResponseCanvas");
+            calculateBodeData6(resistencia, capacitancia, resistencia6, capacitancia6);
+            plotBodeDiagram6(resistencia, capacitancia, resistencia6, capacitancia6, "bodeMagnitudeCanvas", "bodePhaseCanvas");
+            plotRootLocus6(resistencia, capacitancia, resistencia6, capacitancia6, "rootLocusCanvas");
             break;
         default:
     }
