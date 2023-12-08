@@ -22,7 +22,7 @@ Este repositório contém os recursos associados ao artigo "Plataforma Educacion
 ## Estrutura do Repositório
 
 - `article/`: Diretório contendo o artigo científico em formato LaTeX.
-- `src/`: Diretório com os scripts Python usados para gerar os grafos e realizar as análises.
+- `src/`: Diretório com os scripts HTML, CSS e JavaScript usados para gerar os gráficos e realizar as análises.
 - `imgs/`: Diretório com as imagens utilizadas no projeto.
 
 ## Resumo
