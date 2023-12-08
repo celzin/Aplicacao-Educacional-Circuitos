@@ -1,3 +1,10 @@
+.img-modelagem {
+    width: 300px; /* Define a largura da imagem */
+    height: auto; /* Mantém a proporção da imagem */
+    margin: 0 auto; /* Centraliza a imagem horizontalmente */
+    display: block; /* Remove espaços em branco em torno da imagem */
+}
+
 body {
     font-family: "Play", Arial, sans-serif;
     margin: 0;
