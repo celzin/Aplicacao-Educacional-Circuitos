@@ -55,6 +55,6 @@ O modelo de artigo a utilizado é o IEEE Conference Template disponível no Over
   </tr>
   <tr>
     <td>Pedro</td>
-    <td><a href="https://t.me/pedrodias"><img align="center" height="20px" width="90px" src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/> </td>
+    <td><a href="https://t.me/phpdias"><img align="center" height="20px" width="90px" src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/> </td>
   </tr>
 </table>
