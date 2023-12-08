@@ -22,7 +22,8 @@ body {
 } */
 
 header {
-    background-color: #4caf50;
+    border-radius: 0 0 85% 85% / 30%;
+    background-color: #678efe;
     color: white;
     padding: 10px;
     text-align: center;
