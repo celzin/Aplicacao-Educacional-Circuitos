@@ -545,9 +545,9 @@ button:hover {
 }
 
 @media only screen and (max-width: 1050px) {
-    header {
+    /* header {
         background-image: url("images/header6.png");
-    }
+    } */
 
     .container {
         width: 100%;
