@@ -39,56 +39,6 @@ function calculateParallelTransferFunction4(R, C) {
     };
 }
 
-// Plota a resposta ao degrau para um circuito RC paralelo com a fonte de tensão no topo
-// function plotStepResponse4(R, C, voltagem, canvasId) {
-//     const canvas = document.getElementById(canvasId);
-//     const ctx = canvas.getContext('2d');
-//     const tau = R * C; // A constante de tempo tau = R * C permanece a mesma
-//     const timeMax = 5 * tau; // Tempo máximo para simulação
-//     const timeStep = timeMax / 200; // Intervalo de tempo para a simulação
-//     let timeData = [];
-//     let voltageData = [];
-
-//     for (let t = 0; t <= timeMax; t += timeStep) {
-//         // vOut agora é a tensão através do resistor, o que equivale a V - Vc, onde Vc é a tensão no capacitor
-//         let vC = voltagem * (1 - Math.exp(-t / tau)); // Tensão no capacitor
-//         let vOut = voltagem - vC; // Tensão no resistor é a tensão total menos a tensão no capacitor
-//         timeData.push(t);
-//         voltageData.push(vOut);
-//     }
-
-//     // Código para plotar o gráfico de resposta ao degrau usando Chart.js
-//     new Chart(ctx, {
-//         type: "line",
-//         data: {
-//             labels: timeData,
-//             datasets: [{
-//                 label: "Step Response",
-//                 data: voltageData,
-//                 fill: false,
-//                 borderColor: "blue",
-//                 tension: 0.1
-//             }]
-//         },
-//         options: {
-//             scales: {
-//                 x: {
-//                     title: {
-//                         display: true,
-//                         text: "Time (s)"
-//                     }
-//                 },
-//                 y: {
-//                     title: {
-//                         display: true,
-//                         text: "Voltage (V)"
-//                     }
-//                 }
-//             }
-//         }
-//     });
-// }
-
 // Plota a resposta ao degrau para um circuito RC paralelo com a fonte de tensão no topo (saída no resistor)
 function plotStepResponse4(R, C, voltagem, canvasId) {
     const canvas = document.getElementById(canvasId);
@@ -127,6 +77,11 @@ function plotStepResponse4(R, C, voltagem, canvasId) {
                     title: {
                         display: true,
                         text: "Time (s)"
+                    },
+                    ticks: {
+                        callback: function (value, index, values) {
+                            return Number(value).toFixed(1);
+                        }
                     }
                 },
                 y: {

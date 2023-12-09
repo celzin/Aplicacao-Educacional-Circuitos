@@ -40,6 +40,11 @@ function plotStepResponse5(resistencia, C1, C2, voltagem, canvasId) {
                     title: {
                         display: true,
                         text: "Time (s)"
+                    },
+                    ticks: {
+                        callback: function (value, index, values) {
+                            return Number(value).toFixed(1);
+                        }
                     }
                 },
                 y: {

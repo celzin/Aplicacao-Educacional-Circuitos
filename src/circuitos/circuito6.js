@@ -53,6 +53,11 @@ function plotStepResponse6(R1, C1, R2, C2, voltagem, canvasId) {
                     title: {
                         display: true,
                         text: "Time (s)"
+                    },
+                    ticks: {
+                        callback: function (value, index, values) {
+                            return Number(value).toFixed(1);
+                        }
                     }
                 },
                 y: {
