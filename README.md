@@ -23,7 +23,7 @@ Este repositório contém os recursos associados ao artigo "Plataforma Educacion
 
 <div align="justify">
     
-Acesse [aqui](www.simularcircuitos.com.br).
+Acesse www.simularcircuitos.com.br
 
 </div>
 
