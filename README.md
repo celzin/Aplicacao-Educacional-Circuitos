@@ -16,9 +16,15 @@
 </h1>
 
 <div align="justify">
+
 Este repositório contém os recursos associados ao artigo "Plataforma Educacional para Simulação de Circuitos Dinâmicos", que apresenta uma metodologia dinâmica para compreensão de circuitos elétricos.
 
+</div>
+
+<div align="justify">
+    
 Acesse [aqui](www.simularcircuitos.com.br).
+
 </div>
 
 ## Estrutura do Repositório
