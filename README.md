@@ -46,7 +46,7 @@ Este trabalho apresenta o desenvolvimento de um website educacional interativo p
 
 <div align="justify">
 
-O modelo de artigo a utilizado é o IEEE Conference Template disponível no Overleaf através do [link](https://www.overleaf.com/latex/templates/sbc-conferences-template/blbxwjwzdngr).
+O modelo de artigo utilizado é o SBC Conferences Template disponível no Overleaf através do [link](https://www.overleaf.com/latex/templates/sbc-conferences-template/blbxwjwzdngr).
 
 </div>
 
