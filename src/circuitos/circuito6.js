@@ -76,59 +76,6 @@ function calculateBodeData6(R1, C1, R2, C2) {
     const freqData = [];
     const magData = [];
     const phaseData = [];
-
-    for (let i = 0; i <= 100; i++) {
-        const freq = Math.pow(10, (i / 100) * -4);
-        const omega = 2 * Math.PI * freq;
-
-        // Calcula as funções de transferência individuais para cada estágio
-        const H1 = complex(1, -omega * R1 * C1); // Representação complexa H1(jw)
-        const H2 = complex(1, -omega * R2 * C2); // Representação complexa H2(jw)
-
-        // Combina as funções de transferência
-        const H = complexMultiply(H1, H2);
-
-        // Extrai magnitude e fase
-        const mag = 20 * Math.log10(complexMagnitude(H));
-        const phase = complexPhase(H) * (180 / Math.PI);
-
-        freqData.push(freq);
-        magData.push(mag);
-        phaseData.push(phase);
-    }
-
-    return { freqData, magData, phaseData };
-}
-
-// Calcula o diagrama de Bode para o circuito RC de dois estágios
-// function calculateBodeData(R1, C1, R2, C2) {
-//     const freqData = [];
-//     const magData = [];
-//     const phaseData = [];
-
-//     for (let i = 0; i <= 100; i++) {
-//         const freq = Math.pow(10, (i / 100) * -4);
-//         const omega = 2 * Math.PI * freq;
-//         const Z1 = math.complex(0, -1 / (omega * C1));
-//         const Z2 = math.complex(0, -1 / (omega * C2));
-//         const totalImpedance = math.add(R1, Z1, R2, Z2);
-
-//         const H = math.divide(1, math.add(1, math.divide(totalImpedance, R2)));
-//         const mag = 20 * Math.log10(math.abs(H));
-//         const phase = math.arg(H) * (180 / Math.PI);
-
-//         freqData.push(freq);
-//         magData.push(mag);
-//         phaseData.push(phase);
-//     }
-
-//     return { freqData, magData, phaseData };
-// }
-
-function calculateBodeData6(R1, C1, R2, C2) {
-    const freqData = [];
-    const magData = [];
-    const phaseData = [];
     const transferFunction = calculateTwoStageTransferFunction6(R1, C1, R2, C2);
 
     for (let i = 0; i <= 100; i++) {
@@ -148,54 +95,24 @@ function calculateBodeData6(R1, C1, R2, C2) {
 
 // Plota o diagrama de Bode para o circuito RC de dois estágios
 function plotBodeDiagram6(R1, C1, R2, C2, canvasIdMag, canvasIdPhase) {
-    const freqData = [];
-    const magData = [];
-    const phaseData = [];
-
-    for (let i = 0; i <= 100; i++) {
-        const freq = Math.pow(10, i / 20); // Frequência em escala logarítmica de 10^(-4) até 10^1
-        const omega = 2 * Math.PI * freq; // Frequência angular
-
-        // Cálculo das impedâncias complexas
-        const Z1 = math.complex(0, -1 / (omega * C1));
-        const Z2 = math.complex(0, -1 / (omega * C2));
-
-        // Cálculo da função de transferência para cada estágio
-        const H1 = math.divide(1, math.add(1, math.multiply(Z1, R1)));
-        const H2 = math.divide(1, math.add(1, math.multiply(Z2, R2)));
-
-        // Função de transferência combinada
-        const H = math.multiply(H1, H2);
-
-        // Magnitude e fase para o ponto de frequência
-        const mag = 20 * math.log10(math.abs(H));
-        const phase = math.arg(H) * (180 / Math.PI);
-
-        freqData.push(freq);
-        magData.push(mag);
-        phaseData.push(phase);
-    }
-
-    // Obter os elementos canvas para magnitude e fase
+    const bodeData = calculateBodeData6(R1, C1, R2, C2); // Chama a função para calcular os dados de Bode
     const canvasMag = document.getElementById(canvasIdMag);
     const ctxMag = canvasMag.getContext("2d");
     const canvasPhase = document.getElementById(canvasIdPhase);
     const ctxPhase = canvasPhase.getContext("2d");
 
-    // Criar o gráfico de magnitude
+    // Plotagem do gráfico de magnitude
     new Chart(ctxMag, {
         type: "line",
         data: {
-            labels: freqData,
-            datasets: [
-                {
-                    label: "Magnitude (dB)",
-                    data: magData,
-                    fill: false,
-                    borderColor: "red",
-                    borderWidth: 1
-                }
-            ]
+            labels: bodeData.freqData,
+            datasets: [{
+                label: "Magnitude (dB)",
+                data: bodeData.magData,
+                fill: false,
+                borderColor: "red",
+                borderWidth: 1
+            }]
         },
         options: {
             scales: {
@@ -216,20 +133,18 @@ function plotBodeDiagram6(R1, C1, R2, C2, canvasIdMag, canvasIdPhase) {
         }
     });
 
-    // Criar o gráfico de fase
+    // Plotagem do gráfico de fase
     new Chart(ctxPhase, {
         type: "line",
         data: {
-            labels: freqData,
-            datasets: [
-                {
-                    label: "Phase (degrees)",
-                    data: phaseData,
-                    fill: false,
-                    borderColor: "blue",
-                    borderWidth: 1
-                }
-            ]
+            labels: bodeData.freqData,
+            datasets: [{
+                label: "Phase (degrees)",
+                data: bodeData.phaseData,
+                fill: false,
+                borderColor: "blue",
+                borderWidth: 1
+            }]
         },
         options: {
             scales: {
