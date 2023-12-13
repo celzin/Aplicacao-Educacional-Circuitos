@@ -21,7 +21,7 @@ Este repositório contém os recursos associados ao artigo "Plataforma Educacion
 
 </div>
 
-<div align="justify">
+<div align="center">
     
 Acesse www.simularcircuitos.com.br
 
